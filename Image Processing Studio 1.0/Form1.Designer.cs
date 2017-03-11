@@ -32,7 +32,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.sharpeningControl1 = new Image_Processing_Studio_1._0.SharpeningControl();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.histogramBox1 = new Emgu.CV.UI.HistogramBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpen = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -45,6 +46,9 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +87,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.sharpeningControl1);
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Size = new System.Drawing.Size(901, 427);
             this.splitContainer2.SplitterDistance = 591;
             this.splitContainer2.TabIndex = 0;
@@ -97,14 +101,26 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // sharpeningControl1
+            // splitContainer3
             // 
-            this.sharpeningControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sharpeningControl1.Location = new System.Drawing.Point(11, 193);
-            this.sharpeningControl1.Name = "sharpeningControl1";
-            this.sharpeningControl1.Size = new System.Drawing.Size(290, 229);
-            this.sharpeningControl1.TabIndex = 0;
-            this.sharpeningControl1.ApplyClicked += new System.EventHandler(this.sharpApplyClicked);
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.histogramBox1);
+            this.splitContainer3.Size = new System.Drawing.Size(304, 425);
+            this.splitContainer3.SplitterDistance = 250;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // histogramBox1
+            // 
+            this.histogramBox1.Location = new System.Drawing.Point(3, 8);
+            this.histogramBox1.Name = "histogramBox1";
+            this.histogramBox1.Size = new System.Drawing.Size(280, 231);
+            this.histogramBox1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -151,6 +167,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -165,6 +184,8 @@
         private System.Windows.Forms.Button btnOpen;
         private SharpeningControl sharpeningControl1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private Emgu.CV.UI.HistogramBox histogramBox1;
     }
 }
 

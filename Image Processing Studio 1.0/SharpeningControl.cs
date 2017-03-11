@@ -57,7 +57,7 @@ namespace Image_Processing_Studio_1._0
 
 
 
-        public Image getProcessed(Mat img)
+        public Image<Bgr, byte> getProcessed(Mat img)
         {
             Mat dblImg = new Mat(img.Rows,img.Cols,Emgu.CV.CvEnum.DepthType.Cv64F,img.NumberOfChannels);
             Mat dblBlurImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
@@ -66,7 +66,7 @@ namespace Image_Processing_Studio_1._0
             int k = 2*(int)Math.Round(3.0*sigma)+1;
             CvInvoke.GaussianBlur(dblImg, dblBlurImg, new Size(k, k), sigma, sigma);
             CvInvoke.AddWeighted(dblImg,1.0+amount,dblBlurImg,-amount,0,outImg);
-            return outImg.ToImage<Bgr, byte>().ToBitmap();
+            return outImg.ToImage<Bgr, byte>();
         }
 
         private void SharpeningControl_Load(object sender, EventArgs e)

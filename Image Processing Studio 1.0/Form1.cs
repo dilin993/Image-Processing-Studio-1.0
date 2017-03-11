@@ -18,6 +18,12 @@ namespace Image_Processing_Studio_1._0
         Mat img;
         string imgPath = "";
 
+        Image<Bgr, byte> My_Image;
+        Image<Gray, byte> gray_image;
+        Image<Gray, byte> img2Blue;
+        Image<Gray, byte> img2Green;
+        Image<Gray, byte> img2Red;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +36,9 @@ namespace Image_Processing_Studio_1._0
                 imgPath = openFileDialog1.FileName;
                 img = CvInvoke.Imread(imgPath);
                 pictureBox1.Image = img.ToImage<Bgr, byte>().ToBitmap();
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                HistogramUpdate();
             }
         }
 
@@ -37,13 +46,56 @@ namespace Image_Processing_Studio_1._0
         {
             try
             {
-                pictureBox1.Image = sharpeningControl1.getProcessed(img);
+                My_Image = sharpeningControl1.getProcessed(img);
+                pictureBox1.Image = My_Image.ToBitmap();
+
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void HistogramUpdate()
+        {
+            try
+            {
+                My_Image = img.ToImage<Bgr, Byte>();
+                gray_image = My_Image.Convert<Gray, byte>();
+                img2Blue = My_Image[0];
+                img2Green = My_Image[1];
+                img2Red = My_Image[2];
+                
+                histogramBox1.ClearHistogram();
+                DenseHistogram Hist = new DenseHistogram(256, new RangeF(0, 255));
+
+                Mat m = new Mat();
+
+                Hist.Calculate(new Image<Gray, byte>[] { gray_image }, false, null);
+                Hist.CopyTo(m);
+                histogramBox1.AddHistogram("Gray Histogram", Color.Black, m, 256, new float[] { 0, 256 });
+
+                Hist.Calculate(new Image<Gray, byte>[] { img2Blue }, false, null);
+                Hist.CopyTo(m);
+                histogramBox1.AddHistogram("Blue Histogram", Color.Blue, m, 256, new float[] { 0, 256 });
+
+                Hist.Calculate(new Image<Gray, byte>[] { img2Green }, false, null);
+                Hist.CopyTo(m);
+                histogramBox1.AddHistogram("Green Histogram", Color.Green, m, 256, new float[] { 0, 256 });
+
+                Hist.Calculate(new Image<Gray, byte>[] { img2Red }, false, null);
+                Hist.CopyTo(m);
+                histogramBox1.AddHistogram("Red Histogram", Color.Red, m, 256, new float[] { 0, 256 });
+                histogramBox1.Refresh();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
