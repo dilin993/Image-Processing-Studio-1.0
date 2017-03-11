@@ -13,28 +13,6 @@ using Emgu.CV.Structure;
 
 namespace Image_Processing_Studio_1._0
 {
-    public class SharpeningControlEvenArgs : EventArgs
-    {
-        private double sigma;
-        private double amount;
-
-        public double Sigma
-        {
-            get { return sigma; }
-        }
-
-        public double Amount
-        {
-            get { return amount; }
-        }
-
-        public SharpeningControlEvenArgs(double sigma, double amount)
-        {
-            this.sigma = sigma;
-            this.amount = amount;
-        }
-    }
-
     public partial class SharpeningControl : UserControl
     {
 
@@ -47,7 +25,6 @@ namespace Image_Processing_Studio_1._0
         double sigma;
         double amount;
         public event EventHandler ApplyClicked;
-        public event EventHandler ResetClicked;
 
         public SharpeningControl()
         {
@@ -101,15 +78,19 @@ namespace Image_Processing_Studio_1._0
         private void btnApply_Click(object sender, EventArgs e)
         {
             if (ApplyClicked != null)
-                this.ApplyClicked(this, 
-                    new SharpeningControlEvenArgs(sigma,amount));
+            {
+                string[] parameters = {ImageProcessingTypes.Sharpening,
+                sigma.ToString(), amount.ToString()};
+                this.ApplyClicked(this,
+                    new ImageProcessingEventArgs(parameters));
+            }
+                
 
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            if (ResetClicked != null)
-                this.ResetClicked(this, new EventArgs());
-        }
+       
     }
+
+    
+
 }
