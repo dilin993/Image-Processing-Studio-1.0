@@ -37,13 +37,14 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.operationTab = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpen = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.operationTab = new System.Windows.Forms.SplitContainer();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSharpen = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnDenoise = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,9 +59,9 @@
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.operationTab)).BeginInit();
             this.operationTab.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,8 +81,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(901, 509);
-            this.splitContainer1.SplitterDistance = 428;
+            this.splitContainer1.Size = new System.Drawing.Size(901, 538);
+            this.splitContainer1.SplitterDistance = 457;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -100,7 +101,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.operationTab);
-            this.splitContainer2.Size = new System.Drawing.Size(901, 428);
+            this.splitContainer2.Size = new System.Drawing.Size(901, 457);
             this.splitContainer2.SplitterDistance = 591;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -120,8 +121,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainer3.Size = new System.Drawing.Size(589, 426);
-            this.splitContainer3.SplitterDistance = 375;
+            this.splitContainer3.Size = new System.Drawing.Size(589, 455);
+            this.splitContainer3.SplitterDistance = 404;
             this.splitContainer3.TabIndex = 0;
             // 
             // pictureBox1
@@ -129,7 +130,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(589, 375);
+            this.pictureBox1.Size = new System.Drawing.Size(589, 404);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -167,11 +168,24 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // operationTab
+            // 
+            this.operationTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operationTab.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.operationTab.IsSplitterFixed = true;
+            this.operationTab.Location = new System.Drawing.Point(0, 0);
+            this.operationTab.Name = "operationTab";
+            this.operationTab.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.operationTab.Size = new System.Drawing.Size(304, 455);
+            this.operationTab.SplitterDistance = 195;
+            this.operationTab.TabIndex = 0;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnOpen);
             this.flowLayoutPanel1.Controls.Add(this.btnSave);
             this.flowLayoutPanel1.Controls.Add(this.btnSharpen);
+            this.flowLayoutPanel1.Controls.Add(this.btnDenoise);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -191,23 +205,6 @@
             this.btnOpen.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
-            // operationTab
-            // 
-            this.operationTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operationTab.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.operationTab.IsSplitterFixed = true;
-            this.operationTab.Location = new System.Drawing.Point(0, 0);
-            this.operationTab.Name = "operationTab";
-            this.operationTab.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.operationTab.Size = new System.Drawing.Size(304, 426);
-            this.operationTab.SplitterDistance = 195;
-            this.operationTab.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -236,13 +233,33 @@
             this.btnSharpen.UseVisualStyleBackColor = true;
             this.btnSharpen.Click += new System.EventHandler(this.btnSharpen_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
+            // btnDenoise
+            // 
+            this.btnDenoise.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDenoise.Image = ((System.Drawing.Image)(resources.GetObject("btnDenoise.Image")));
+            this.btnDenoise.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDenoise.Location = new System.Drawing.Point(231, 3);
+            this.btnDenoise.Name = "btnDenoise";
+            this.btnDenoise.Size = new System.Drawing.Size(70, 70);
+            this.btnDenoise.TabIndex = 3;
+            this.btnDenoise.Text = "Denoise";
+            this.btnDenoise.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDenoise.UseVisualStyleBackColor = true;
+            this.btnDenoise.Click += new System.EventHandler(this.btnDenoise_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 509);
+            this.ClientSize = new System.Drawing.Size(901, 538);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(917, 577);
             this.Name = "Form1";
             this.Text = "Image Processing Studio 1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -261,9 +278,9 @@
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.operationTab)).EndInit();
             this.operationTab.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -284,6 +301,7 @@
         private System.Windows.Forms.SplitContainer operationTab;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnSharpen;
+        private System.Windows.Forms.Button btnDenoise;
     }
 }
 

@@ -24,6 +24,7 @@ namespace Image_Processing_Studio_1._0
 
         // controls
         SharpeningControl sharpeningControl;
+        NoiseRemovalControl noiseRemovalControl;
 
         public Form1()
         {
@@ -35,6 +36,10 @@ namespace Image_Processing_Studio_1._0
             sharpeningControl = new SharpeningControl();
             sharpeningControl.Dock = DockStyle.Top;
             sharpeningControl.ApplyClicked += onProcessingApplyClicked;
+
+            noiseRemovalControl = new NoiseRemovalControl();
+            noiseRemovalControl.Dock = DockStyle.Top;
+            noiseRemovalControl.ApplyClicked += onProcessingApplyClicked;
         }
 
         public string GetImageFilter()
@@ -172,6 +177,7 @@ namespace Image_Processing_Studio_1._0
                 btnNext.Enabled = false;
                 btnSharpen.Enabled = false;
                 operationTab.Enabled = false;
+                btnDenoise.Enabled = false;
             }
             else
             {
@@ -189,6 +195,7 @@ namespace Image_Processing_Studio_1._0
                 {
                     operationTab.Enabled = true;
                     btnSharpen.Enabled = true;
+                    btnDenoise.Enabled = true;
                 }
             }
         }
@@ -229,5 +236,10 @@ namespace Image_Processing_Studio_1._0
             }
         }
 
+        private void btnDenoise_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(noiseRemovalControl);
+        }
     }
 }

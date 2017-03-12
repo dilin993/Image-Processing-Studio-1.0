@@ -51,13 +51,13 @@ namespace Image_Processing_Studio_1._0
             tbSigma.Value = (int)Math.Round((DEFAULT_SIGMA - MIN_SIGMA) * (tbSigma.Maximum - tbSigma.Minimum) /
                 (tbSigma.TickFrequency * (MAX_SIGMA - MIN_SIGMA)));
             sigma = tbSigma.Value * tbSigma.TickFrequency * 
-                (MAX_SIGMA - MIN_SIGMA) / (tbSigma.Maximum - tbSigma.Minimum) + MIN_SIGMA; ;
+                (MAX_SIGMA - MIN_SIGMA) / (tbSigma.Maximum - tbSigma.Minimum) + MIN_SIGMA; 
             lbSigma.Text = sigma.ToString();
 
             tbAmount.Value = (int)Math.Round((DEFAULT_AMOUNT - MIN_AMOUNT) * (tbAmount.Maximum - tbAmount.Minimum) /
                 (tbAmount.TickFrequency * (MAX_AMOUNT - MIN_AMOUNT)));
             amount = tbAmount.Value * tbAmount.TickFrequency *
-               (MAX_AMOUNT - MIN_AMOUNT) / (tbAmount.Maximum - tbAmount.Minimum) + MIN_AMOUNT; ;
+               (MAX_AMOUNT - MIN_AMOUNT) / (tbAmount.Maximum - tbAmount.Minimum) + MIN_AMOUNT; 
             lbAmount.Text = amount.ToString();
         }
 
