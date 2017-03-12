@@ -46,6 +46,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.EXIF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -192,6 +193,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSave);
             this.flowLayoutPanel1.Controls.Add(this.btnSharpen);
             this.flowLayoutPanel1.Controls.Add(this.btnDenoise);
+            this.flowLayoutPanel1.Controls.Add(this.EXIF);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -272,6 +274,20 @@
             this.zedGraphControl1.Size = new System.Drawing.Size(302, 190);
             this.zedGraphControl1.TabIndex = 0;
             // 
+            // EXIF
+            // 
+            this.EXIF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EXIF.Image = ((System.Drawing.Image)(resources.GetObject("EXIF.Image")));
+            this.EXIF.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.EXIF.Location = new System.Drawing.Point(307, 3);
+            this.EXIF.Name = "EXIF";
+            this.EXIF.Size = new System.Drawing.Size(77, 69);
+            this.EXIF.TabIndex = 4;
+            this.EXIF.Text = "EXIF";
+            this.EXIF.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.EXIF.UseVisualStyleBackColor = true;
+            this.EXIF.Click += new System.EventHandler(this.EXIF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +340,7 @@
         private System.Windows.Forms.Button btnSharpen;
         private System.Windows.Forms.Button btnDenoise;
         private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.Button EXIF;
     }
 }
 

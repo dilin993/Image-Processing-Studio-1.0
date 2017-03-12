@@ -14,6 +14,7 @@ using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
 
 using ZedGraph;
+using MetadataExtractor;
 
 namespace Image_Processing_Studio_1._0
 {
@@ -28,6 +29,7 @@ namespace Image_Processing_Studio_1._0
         // controls
         SharpeningControl sharpeningControl;
         NoiseRemovalControl noiseRemovalControl;
+        EXIF_view EXIF_details;
 
         public Form1()
         {
@@ -43,6 +45,8 @@ namespace Image_Processing_Studio_1._0
             noiseRemovalControl = new NoiseRemovalControl();
             noiseRemovalControl.Dock = DockStyle.Top;
             noiseRemovalControl.ApplyClicked += onProcessingApplyClicked;
+
+            
         }
 
         public string GetImageFilter()
@@ -196,6 +200,7 @@ namespace Image_Processing_Studio_1._0
                 btnSharpen.Enabled = false;
                 operationTab.Enabled = false;
                 btnDenoise.Enabled = false;
+                EXIF.Enabled = false;
             }
             else
             {
@@ -214,6 +219,7 @@ namespace Image_Processing_Studio_1._0
                     operationTab.Enabled = true;
                     btnSharpen.Enabled = true;
                     btnDenoise.Enabled = true;
+                    EXIF.Enabled = true;
                 }
             }
         }
@@ -310,6 +316,33 @@ namespace Image_Processing_Studio_1._0
 
             zedGraphControl1.Invalidate();
 
+        }
+
+        private void EXIF_Click(object sender, EventArgs e)
+        {
+            EXIF_details = new EXIF_view();
+            try
+            {
+                var directories = ImageMetadataReader.ReadMetadata(imgList[curIndex].Filename);
+                String str;
+                EXIF_details.clearText();
+                foreach (var directory in directories)
+                {
+
+                    foreach (var tag in directory.Tags)
+                    {
+                        str = $"[{directory.Name}] {tag.Name} = {tag.Description}";
+                        //Console.WriteLine(str);
+                        EXIF_details.Show();
+                        EXIF_details.updateDetails(str);
+                    }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
