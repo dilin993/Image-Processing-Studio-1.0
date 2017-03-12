@@ -140,8 +140,6 @@ namespace Image_Processing_Studio_1._0
             {
                 curIndex = index;
                 uiUpdate();
-                if (img != null)
-                    img.Dispose();
                 reloadImage();
             }
         }
