@@ -13,6 +13,8 @@ using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
 
+using ZedGraph;
+
 namespace Image_Processing_Studio_1._0
 {
     public partial class Form1 : Form
@@ -100,12 +102,24 @@ namespace Image_Processing_Studio_1._0
                 else
                     uiUpdate();
             }
+
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
             uiUpdate();
+
+            GraphPane myPane = zedGraphControl1.GraphPane;
+            myPane.Title.Text = "Histograms";
+            myPane.XAxis.Title.Text = "Pixel Value";
+            myPane.YAxis.Title.Text = "";
+            myPane.XAxis.Scale.Min = 0;
+            myPane.XAxis.Scale.Max = 255;
+            myPane.YAxis.Scale.Min = 0;
+            myPane.YAxis.Scale.Max = 2;
+            // Make sure the Graph gets redrawn
+            zedGraphControl1.Invalidate();
         }
 
         private void reloadImage()
@@ -169,6 +183,7 @@ namespace Image_Processing_Studio_1._0
             }
           
             pictureBox1.Image = new Bitmap(displayImage, width, height);
+            HistogramUpdate(new Image<Bgr, Byte>(new Bitmap(pictureBox1.Image)));
         }
         
 
@@ -230,10 +245,12 @@ namespace Image_Processing_Studio_1._0
             {
                 ImageProcessingEventArgs ei = (ImageProcessingEventArgs)e;
                 img = ImageProcessor.getResult(ref img, ei.Parameters);
+                HistogramUpdate(img.ToImage<Bgr,Byte>());
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                
             }
             catch (Exception ex)
             {
@@ -245,6 +262,54 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(noiseRemovalControl);
+        }
+
+        private void HistogramUpdate(Image<Bgr,Byte> img_ref)
+        {
+            GraphPane myPane = zedGraphControl1.GraphPane;
+
+            Image<Gray, byte> gray_image = img_ref.Convert<Gray,byte>();
+
+            DenseHistogram Hist = new DenseHistogram(256, new RangeF(0, 255));
+
+            double[] m_gray = new double[256];
+            Hist.Calculate(new Image<Gray, byte>[] { gray_image }, false, null);
+            Hist.CopyTo(m_gray);
+            double gray_max = m_gray.Max();            
+
+            double[] m_red = new double[256];
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
+            Hist.CopyTo(m_red);
+            double red_max = m_red.Max();
+
+            double[] m_green = new double[256];
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[1] }, false, null);
+            Hist.CopyTo(m_green);
+            double green_max = m_green.Max();
+
+            double[] m_blue = new double[256];
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[2] }, false, null);
+            Hist.CopyTo(m_blue);
+            double blue_max = m_blue.Max();
+
+            double[] index = new double[256];
+            for (int i = 0; i < 256; i++)
+            {
+                index[i] = i;
+                m_red[i] /= red_max;
+                m_green[i] /= green_max;
+                m_blue[i] /= blue_max;
+                m_gray[i] /= gray_max;
+            }
+
+            myPane.CurveList.Clear();
+            LineItem myCurve = myPane.AddCurve("gray", index, m_gray, Color.Black, SymbolType.None);
+            myCurve = myPane.AddCurve("red", index, m_red, Color.Red, SymbolType.None);
+            myCurve = myPane.AddCurve("green", index, m_green, Color.Green, SymbolType.None);
+            myCurve = myPane.AddCurve("blue", index, m_blue, Color.Blue, SymbolType.None);
+
+            zedGraphControl1.Invalidate();
+
         }
     }
 }
