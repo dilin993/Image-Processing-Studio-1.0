@@ -42,9 +42,9 @@
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSharpen = new System.Windows.Forms.Button();
+            this.btnDenoise = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDenoise = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -233,11 +233,6 @@
             this.btnSharpen.UseVisualStyleBackColor = true;
             this.btnSharpen.Click += new System.EventHandler(this.btnSharpen_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
             // btnDenoise
             // 
             this.btnDenoise.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -252,6 +247,11 @@
             this.btnDenoise.UseVisualStyleBackColor = true;
             this.btnDenoise.Click += new System.EventHandler(this.btnDenoise_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,7 +259,7 @@
             this.ClientSize = new System.Drawing.Size(901, 538);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(917, 577);
+            this.MinimumSize = new System.Drawing.Size(917, 577);
             this.Name = "Form1";
             this.Text = "Image Processing Studio 1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
