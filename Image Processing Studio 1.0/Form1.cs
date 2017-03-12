@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
 
 namespace Image_Processing_Studio_1._0
 {
     public partial class Form1 : Form
     {
-        Mat img;
+        UMat img;
         List<ImageHistory> imgList;
         const int CAPACITY = 100;
         int curIndex = -1;
@@ -114,14 +115,18 @@ namespace Image_Processing_Studio_1._0
             if (curIndex < 0 || curIndex >= imgList.Count) return;
             try
             {
-                img = CvInvoke.Imread(imgList[curIndex].Filename);
+                if (img != null)
+                    img.Dispose();
+                img = new UMat(imgList[curIndex].Filename,ImreadModes.Color);
                 char[] delimiterChars = { ','};
 
                 foreach (string process in imgList[curIndex].History)
                 {
-                    img = ImageProcessor.getResult(img, process.Split(delimiterChars));
+                    img = ImageProcessor.getResult(ref img, process.Split(delimiterChars));
                 }
                 redrawImg();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
                 catch (Exception ex)
             {
@@ -226,9 +231,11 @@ namespace Image_Processing_Studio_1._0
             try
             {
                 ImageProcessingEventArgs ei = (ImageProcessingEventArgs)e;
-                img = ImageProcessor.getResult(img, ei.Parameters);
+                img = ImageProcessor.getResult(ref img, ei.Parameters);
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
             catch (Exception ex)
             {

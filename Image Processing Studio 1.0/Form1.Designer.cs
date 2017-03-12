@@ -259,7 +259,7 @@
             this.ClientSize = new System.Drawing.Size(901, 538);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(917, 577);
+            this.MaximumSize = new System.Drawing.Size(917, 577);
             this.Name = "Form1";
             this.Text = "Image Processing Studio 1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
