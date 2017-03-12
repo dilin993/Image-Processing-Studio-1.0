@@ -36,7 +36,6 @@
             this.tbAmount = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbSigma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAmount)).BeginInit();
             this.SuspendLayout();
@@ -115,22 +114,11 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(124, 176);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 40);
-            this.btnReset.TabIndex = 8;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
             // SharpeningControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.lbAmount);
             this.Controls.Add(this.tbAmount);
@@ -159,6 +147,5 @@
         private System.Windows.Forms.TrackBar tbAmount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.Button btnReset;
     }
 }
