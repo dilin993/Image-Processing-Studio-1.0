@@ -83,9 +83,9 @@ namespace Image_Processing_Studio_1._0
 
                 updateDisplay();
             }
-            catch (Exception ex)
+            catch (Exception exc)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
