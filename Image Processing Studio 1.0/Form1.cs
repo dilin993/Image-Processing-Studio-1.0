@@ -245,7 +245,7 @@ namespace Image_Processing_Studio_1._0
             {
                 ImageProcessingEventArgs ei = (ImageProcessingEventArgs)e;
                 img = ImageProcessor.getResult(ref img, ei.Parameters);
-                HistogramUpdate(img.ToImage<Bgr,Byte>());
+                HistogramUpdate(img.ToImage<Bgr, Byte>());
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
                 GC.Collect();
@@ -264,18 +264,18 @@ namespace Image_Processing_Studio_1._0
             operationTab.Panel2.Controls.Add(noiseRemovalControl);
         }
 
-        private void HistogramUpdate(Image<Bgr,Byte> img_ref)
+        private void HistogramUpdate(Image<Bgr, Byte> img_ref)
         {
             GraphPane myPane = zedGraphControl1.GraphPane;
 
-            Image<Gray, byte> gray_image = img_ref.Convert<Gray,byte>();
+            Image<Gray, byte> gray_image = img_ref.Convert<Gray, byte>();
 
             DenseHistogram Hist = new DenseHistogram(256, new RangeF(0, 255));
 
             double[] m_gray = new double[256];
             Hist.Calculate(new Image<Gray, byte>[] { gray_image }, false, null);
             Hist.CopyTo(m_gray);
-            double gray_max = m_gray.Max();            
+            double gray_max = m_gray.Max();
 
             double[] m_red = new double[256];
             Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
