@@ -32,38 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV.DebuggerVisualizers.VS2015">
-      <HintPath>C:\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.DebuggerVisualizers.VS2015.dll</HintPath>
-    </Reference>
     <Reference Include="Emgu.CV.UI">
-      <HintPath>C:\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.CV.UI.GL">
-      <HintPath>C:\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.GL.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.World">
-      <HintPath>C:\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.World.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.World.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -86,7 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharpeningControl.cs" />
+    <Compile Include="SharpeningControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="SharpeningControl.Designer.cs">
       <DependentUpon>SharpeningControl.cs</DependentUpon>
     </Compile>
