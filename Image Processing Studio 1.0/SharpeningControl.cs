@@ -25,6 +25,7 @@ namespace Image_Processing_Studio_1._0
         double sigma;
         double amount;
         public event EventHandler ApplyClicked;
+        
 
         public SharpeningControl()
         {
@@ -71,7 +72,7 @@ namespace Image_Processing_Studio_1._0
         private void tbAmount_Scroll(object sender, EventArgs e)
         {
             amount = tbAmount.Value * tbAmount.TickFrequency *
-               (MAX_AMOUNT - MIN_AMOUNT) / (tbAmount.Maximum - tbAmount.Minimum) + MIN_AMOUNT; ;
+               (MAX_AMOUNT - MIN_AMOUNT) / (tbAmount.Maximum - tbAmount.Minimum) + MIN_AMOUNT; 
             lbAmount.Text = amount.ToString();
         }
 

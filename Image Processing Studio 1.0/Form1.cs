@@ -30,6 +30,7 @@ namespace Image_Processing_Studio_1._0
         SharpeningControl sharpeningControl;
         NoiseRemovalControl noiseRemovalControl;
         EXIF_view EXIF_details;
+        SaturationAdjustment SaturationControl;
 
         public Form1()
         {
@@ -46,7 +47,12 @@ namespace Image_Processing_Studio_1._0
             noiseRemovalControl.Dock = DockStyle.Top;
             noiseRemovalControl.ApplyClicked += onProcessingApplyClicked;
 
-            
+            SaturationControl = new SaturationAdjustment();
+            SaturationControl.Dock = DockStyle.Top;
+            SaturationControl.ApplyClicked += onProcessingApplyClicked;
+
+
+
         }
 
         public string GetImageFilter()
@@ -201,6 +207,7 @@ namespace Image_Processing_Studio_1._0
                 operationTab.Enabled = false;
                 btnDenoise.Enabled = false;
                 EXIF.Enabled = false;
+                btnSaturation.Enabled = false;
             }
             else
             {
@@ -220,6 +227,7 @@ namespace Image_Processing_Studio_1._0
                     btnSharpen.Enabled = true;
                     btnDenoise.Enabled = true;
                     EXIF.Enabled = true;
+                    btnSaturation.Enabled = true;
                 }
             }
         }
@@ -343,6 +351,12 @@ namespace Image_Processing_Studio_1._0
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void btnSaturation_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(SaturationControl);
         }
     }
 }

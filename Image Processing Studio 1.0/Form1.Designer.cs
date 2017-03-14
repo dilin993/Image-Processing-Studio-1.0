@@ -38,15 +38,16 @@
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.operationTab = new System.Windows.Forms.SplitContainer();
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSharpen = new System.Windows.Forms.Button();
             this.btnDenoise = new System.Windows.Forms.Button();
+            this.EXIF = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
-            this.EXIF = new System.Windows.Forms.Button();
+            this.btnSaturation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -187,6 +188,20 @@
             this.operationTab.SplitterDistance = 195;
             this.operationTab.TabIndex = 0;
             // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Location = new System.Drawing.Point(0, 2);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.ScrollGrace = 0D;
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(302, 190);
+            this.zedGraphControl1.TabIndex = 0;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnOpen);
@@ -194,6 +209,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSharpen);
             this.flowLayoutPanel1.Controls.Add(this.btnDenoise);
             this.flowLayoutPanel1.Controls.Add(this.EXIF);
+            this.flowLayoutPanel1.Controls.Add(this.btnSaturation);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -255,25 +271,6 @@
             this.btnDenoise.UseVisualStyleBackColor = true;
             this.btnDenoise.Click += new System.EventHandler(this.btnDenoise_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
-            // zedGraphControl1
-            // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(0, 2);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(302, 190);
-            this.zedGraphControl1.TabIndex = 0;
-            // 
             // EXIF
             // 
             this.EXIF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -287,6 +284,24 @@
             this.EXIF.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.EXIF.UseVisualStyleBackColor = true;
             this.EXIF.Click += new System.EventHandler(this.EXIF_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
+            // btnSaturation
+            // 
+            this.btnSaturation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaturation.Image = ((System.Drawing.Image)(resources.GetObject("btnSaturation.Image")));
+            this.btnSaturation.Location = new System.Drawing.Point(390, 3);
+            this.btnSaturation.Name = "btnSaturation";
+            this.btnSaturation.Size = new System.Drawing.Size(77, 69);
+            this.btnSaturation.TabIndex = 5;
+            this.btnSaturation.Text = "Saturation";
+            this.btnSaturation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSaturation.UseVisualStyleBackColor = true;
+            this.btnSaturation.Click += new System.EventHandler(this.btnSaturation_Click);
             // 
             // Form1
             // 
@@ -341,6 +356,7 @@
         private System.Windows.Forms.Button btnDenoise;
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.Button EXIF;
+        private System.Windows.Forms.Button btnSaturation;
     }
 }
 

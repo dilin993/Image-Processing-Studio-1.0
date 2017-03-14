@@ -111,6 +111,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaturationAdjustment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SaturationAdjustment.Designer.cs">
+      <DependentUpon>SaturationAdjustment.cs</DependentUpon>
+    </Compile>
     <Compile Include="SharpeningControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +141,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SaturationAdjustment.resx">
+      <DependentUpon>SaturationAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SharpeningControl.resx">
       <DependentUpon>SharpeningControl.cs</DependentUpon>
     </EmbeddedResource>
