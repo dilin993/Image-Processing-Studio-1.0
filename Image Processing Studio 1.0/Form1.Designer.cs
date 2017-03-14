@@ -294,6 +294,7 @@
             // 
             this.btnSaturation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaturation.Image = ((System.Drawing.Image)(resources.GetObject("btnSaturation.Image")));
+            this.btnSaturation.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSaturation.Location = new System.Drawing.Point(390, 3);
             this.btnSaturation.Name = "btnSaturation";
             this.btnSaturation.Size = new System.Drawing.Size(77, 69);
