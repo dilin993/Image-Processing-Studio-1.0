@@ -45,9 +45,10 @@
             this.btnSharpen = new System.Windows.Forms.Button();
             this.btnDenoise = new System.Windows.Forms.Button();
             this.EXIF = new System.Windows.Forms.Button();
+            this.btnSaturation = new System.Windows.Forms.Button();
+            this.btnColorAdjust = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnSaturation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -210,6 +211,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnDenoise);
             this.flowLayoutPanel1.Controls.Add(this.EXIF);
             this.flowLayoutPanel1.Controls.Add(this.btnSaturation);
+            this.flowLayoutPanel1.Controls.Add(this.btnColorAdjust);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -285,11 +287,6 @@
             this.EXIF.UseVisualStyleBackColor = true;
             this.EXIF.Click += new System.EventHandler(this.EXIF_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
             // btnSaturation
             // 
             this.btnSaturation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -303,6 +300,25 @@
             this.btnSaturation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSaturation.UseVisualStyleBackColor = true;
             this.btnSaturation.Click += new System.EventHandler(this.btnSaturation_Click);
+            // 
+            // btnColorAdjust
+            // 
+            this.btnColorAdjust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColorAdjust.Image = ((System.Drawing.Image)(resources.GetObject("btnColorAdjust.Image")));
+            this.btnColorAdjust.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnColorAdjust.Location = new System.Drawing.Point(473, 3);
+            this.btnColorAdjust.Name = "btnColorAdjust";
+            this.btnColorAdjust.Size = new System.Drawing.Size(82, 69);
+            this.btnColorAdjust.TabIndex = 6;
+            this.btnColorAdjust.Text = "Color";
+            this.btnColorAdjust.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnColorAdjust.UseVisualStyleBackColor = true;
+            this.btnColorAdjust.Click += new System.EventHandler(this.btnColorAdjust_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
             // 
             // Form1
             // 
@@ -358,6 +374,7 @@
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.Button EXIF;
         private System.Windows.Forms.Button btnSaturation;
+        private System.Windows.Forms.Button btnColorAdjust;
     }
 }
 

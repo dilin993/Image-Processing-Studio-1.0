@@ -31,6 +31,7 @@ namespace Image_Processing_Studio_1._0
         NoiseRemovalControl noiseRemovalControl;
         EXIF_view EXIF_details;
         SaturationAdjustment SaturationControl;
+        ColorAdjustment ColorControl;
 
         public Form1()
         {
@@ -51,6 +52,9 @@ namespace Image_Processing_Studio_1._0
             SaturationControl.Dock = DockStyle.Top;
             SaturationControl.ApplyClicked += onProcessingApplyClicked;
 
+            ColorControl = new ColorAdjustment();
+            ColorControl.Dock = DockStyle.Top;
+            ColorControl.ApplyClicked += onProcessingApplyClicked;
 
 
         }
@@ -210,6 +214,7 @@ namespace Image_Processing_Studio_1._0
                 btnDenoise.Enabled = false;
                 EXIF.Enabled = false;
                 btnSaturation.Enabled = false;
+                btnColorAdjust.Enabled = false;
             }
             else
             {
@@ -230,6 +235,7 @@ namespace Image_Processing_Studio_1._0
                     btnDenoise.Enabled = true;
                     EXIF.Enabled = true;
                     btnSaturation.Enabled = true;
+                    btnColorAdjust.Enabled = true;
                 }
             }
         }
@@ -358,6 +364,12 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(SaturationControl);
+        }
+
+        private void btnColorAdjust_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(ColorControl);
         }
     }
 }

@@ -88,6 +88,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorAdjustment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorAdjustment.Designer.cs">
+      <DependentUpon>ColorAdjustment.cs</DependentUpon>
+    </Compile>
     <Compile Include="EXIF_view.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     <Compile Include="SharpeningControl.Designer.cs">
       <DependentUpon>SharpeningControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ColorAdjustment.resx">
+      <DependentUpon>ColorAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EXIF_view.resx">
       <DependentUpon>EXIF_view.cs</DependentUpon>
     </EmbeddedResource>

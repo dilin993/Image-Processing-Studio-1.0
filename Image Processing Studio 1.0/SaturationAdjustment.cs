@@ -31,15 +31,12 @@ namespace Image_Processing_Studio_1._0
 
         public Image getSaturationChanged(Mat img)
         {
-            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
-            UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
-            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            Image<Hsv, Byte> outImg = img.ToImage<Hsv, byte>();
             double shift = ((amount!=previous_amount)&&(1+ amount - previous_amount>0))? amount - previous_amount : 0;
-            CvInvoke.AddWeighted(dblImg, 1 + shift, dblImg, 0, 0, outImg);
-            dblImg.Dispose();
+            outImg[1].AddWeighted(outImg[1],shift, 0,0);            
             img.Dispose();
             previous_amount = amount;
-            return outImg.ToImage<Bgr, byte>().ToBitmap();
+            return outImg.Convert<Bgr,byte>().ToBitmap();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
