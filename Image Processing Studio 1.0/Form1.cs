@@ -12,7 +12,6 @@ using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
-
 using ZedGraph;
 
 namespace Image_Processing_Studio_1._0
@@ -20,6 +19,7 @@ namespace Image_Processing_Studio_1._0
     public partial class Form1 : Form
     {
         UMat img;
+        public static UMat img_crop;
         List<ImageHistory> imgList;
         const int CAPACITY = 100;
         int curIndex = -1;
@@ -314,7 +314,13 @@ namespace Image_Processing_Studio_1._0
 
         private void btnCrop_Click(object sender, EventArgs e)
         {
-
+            img_crop = img;
+            var frm = new Form2();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.FormClosing += delegate { this.Show(); };
+            frm.Show();
+            this.Hide();
         }
     }
 }
