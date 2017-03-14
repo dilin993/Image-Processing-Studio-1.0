@@ -311,5 +311,10 @@ namespace Image_Processing_Studio_1._0
             zedGraphControl1.Invalidate();
 
         }
+
+        private void btnCrop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
