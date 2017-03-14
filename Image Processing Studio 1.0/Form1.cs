@@ -128,6 +128,7 @@ namespace Image_Processing_Studio_1._0
             myPane.XAxis.Scale.Max = 255;
             myPane.YAxis.Scale.Min = 0;
             myPane.YAxis.Scale.Max = 2;
+            zedGraphControl1.IsAntiAlias = true;
             // Make sure the Graph gets redrawn
             zedGraphControl1.Invalidate();
         }
@@ -173,7 +174,9 @@ namespace Image_Processing_Studio_1._0
             /// Update the display of image with proper resizing
             if (displayImage == null) return;
 
-            if(displayImage.Width<=pictureBox1.Width && displayImage.Height<=pictureBox1.Height)
+            HistogramUpdate(img.ToImage<Bgr, Byte>());
+
+            if (displayImage.Width<=pictureBox1.Width && displayImage.Height<=pictureBox1.Height)
             {
                 pictureBox1.Image = displayImage;
                 return;
@@ -193,7 +196,6 @@ namespace Image_Processing_Studio_1._0
             }
           
             pictureBox1.Image = new Bitmap(displayImage, width, height);
-            HistogramUpdate(new Image<Bgr, Byte>(new Bitmap(pictureBox1.Image)));
         }
         
 
@@ -321,7 +323,6 @@ namespace Image_Processing_Studio_1._0
             myCurve = myPane.AddCurve("red", index, m_red, Color.Red, SymbolType.None);
             myCurve = myPane.AddCurve("green", index, m_green, Color.Green, SymbolType.None);
             myCurve = myPane.AddCurve("blue", index, m_blue, Color.Blue, SymbolType.None);
-
             zedGraphControl1.Invalidate();
 
         }
