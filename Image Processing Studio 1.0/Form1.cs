@@ -183,7 +183,7 @@ namespace Image_Processing_Studio_1._0
             }
           
             pictureBox1.Image = new Bitmap(displayImage, width, height);
-            HistogramUpdate(new Image<Bgr, Byte>(new Bitmap(pictureBox1.Image)));
+            HistogramUpdate(img.ToImage<Bgr,Byte>());
         }
         
 
