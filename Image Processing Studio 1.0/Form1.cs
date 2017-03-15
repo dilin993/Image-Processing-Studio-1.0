@@ -216,6 +216,7 @@ namespace Image_Processing_Studio_1._0
                 EXIF.Enabled = false;
                 btnSaturation.Enabled = false;
                 btnColorAdjust.Enabled = false;
+                btnCrop.Enabled = false;
             }
             else
             {
@@ -237,6 +238,7 @@ namespace Image_Processing_Studio_1._0
                     EXIF.Enabled = true;
                     btnSaturation.Enabled = true;
                     btnColorAdjust.Enabled = true;
+                    btnCrop.Enabled = true;
                 }
             }
         }

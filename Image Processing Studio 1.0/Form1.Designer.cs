@@ -47,9 +47,9 @@
             this.EXIF = new System.Windows.Forms.Button();
             this.btnSaturation = new System.Windows.Forms.Button();
             this.btnColorAdjust = new System.Windows.Forms.Button();
+            this.btnCrop = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnCrop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -317,17 +317,12 @@
             this.btnColorAdjust.UseVisualStyleBackColor = true;
             this.btnColorAdjust.Click += new System.EventHandler(this.btnColorAdjust_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
             // btnCrop
             // 
             this.btnCrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrop.Image = ((System.Drawing.Image)(resources.GetObject("btnCrop.Image")));
             this.btnCrop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCrop.Location = new System.Drawing.Point(307, 3);
+            this.btnCrop.Location = new System.Drawing.Point(561, 3);
             this.btnCrop.Name = "btnCrop";
             this.btnCrop.Size = new System.Drawing.Size(70, 70);
             this.btnCrop.TabIndex = 4;
@@ -335,6 +330,11 @@
             this.btnCrop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCrop.UseVisualStyleBackColor = true;
             this.btnCrop.Click += new System.EventHandler(this.btnCrop_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
             // 
             // Form1
             // 
