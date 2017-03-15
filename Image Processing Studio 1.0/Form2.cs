@@ -23,11 +23,12 @@ namespace Image_Processing_Studio_1._0
         UMat OutImg;
         Image<Bgr, byte> displayImage;
         bool Ischanged = false;
+        public event EventHandler ApplyClicked;
 
         public Form2()
         {
             InitializeComponent();
-            img = Form1.img_crop;
+            img = Form1.img;
             redrawImg();
         }
 
@@ -80,10 +81,7 @@ namespace Image_Processing_Studio_1._0
             updateDisplay();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
         public static void ConvertCoordinates(PictureBox pic,out int X0, out int Y0, int x, int y)
@@ -233,13 +231,13 @@ namespace Image_Processing_Studio_1._0
             if (Ischanged)
             {
                 // Display a MsgBox asking the user to save changes or abort.
-                if (MessageBox.Show("Do you want to keep the changes?", "My Application",
-                   MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to discard changes?", "Discard changes",
+                   MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     // Cancel the Closing event from closing the form.
                     e.Cancel = true;
-                    // Call method to save file...
-                    SendCroppedImage();
+                    //// Call method to save file...
+                    //SendCroppedImage();
                 }
             }
         }
@@ -248,7 +246,12 @@ namespace Image_Processing_Studio_1._0
 
         private void SendCroppedImage()
         {
-            Form1.img_cropped = OutImg;
+            string[] parameters = {ImageProcessingTypes.Cropping,
+            RealImageRect.X.ToString(),
+            RealImageRect.Y.ToString(),
+            RealImageRect.Width.ToString(),
+            RealImageRect.Height.ToString()};
+            this.ApplyClicked(this, new ImageProcessingEventArgs(parameters));
         }
 
         private void cropButton_Click(object sender, EventArgs e)
