@@ -37,6 +37,8 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.operationTab = new System.Windows.Forms.SplitContainer();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -48,12 +50,9 @@
             this.btnSaturation = new System.Windows.Forms.Button();
             this.btnColorAdjust = new System.Windows.Forms.Button();
             this.btnCrop = new System.Windows.Forms.Button();
+            this.VignetteButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.VignetteButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnUndo = new System.Windows.Forms.Button();
-
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,11 +67,11 @@
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.operationTab)).BeginInit();
             this.operationTab.Panel1.SuspendLayout();
             this.operationTab.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -178,6 +177,28 @@
             this.toolTip1.SetToolTip(this.btnNext, "Next");
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.btnUndo);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(389, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 47);
+            this.flowLayoutPanel3.TabIndex = 2;
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
+            this.btnUndo.Location = new System.Drawing.Point(157, 3);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnUndo.Size = new System.Drawing.Size(40, 40);
+            this.btnUndo.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnUndo, "Undo");
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // operationTab
             // 
@@ -337,12 +358,6 @@
             this.btnCrop.UseVisualStyleBackColor = true;
             this.btnCrop.Click += new System.EventHandler(this.btnCrop_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
-
             // VignetteButton
             // 
             this.VignetteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -356,29 +371,11 @@
             this.VignetteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.VignetteButton.UseVisualStyleBackColor = true;
             this.VignetteButton.Click += new System.EventHandler(this.VignetteButton_Click);
-
-            // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Controls.Add(this.btnUndo);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(389, 0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 47);
-            this.flowLayoutPanel3.TabIndex = 2;
+            // openFileDialog1
             // 
-            // btnUndo
-            // 
-            this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
-            this.btnUndo.Location = new System.Drawing.Point(157, 3);
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnUndo.Size = new System.Drawing.Size(40, 40);
-            this.btnUndo.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.btnUndo, "Undo");
-            this.btnUndo.UseVisualStyleBackColor = true;
-            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
-
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
             // 
             // Form1
             // 
@@ -406,11 +403,11 @@
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.operationTab.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.operationTab)).EndInit();
             this.operationTab.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
