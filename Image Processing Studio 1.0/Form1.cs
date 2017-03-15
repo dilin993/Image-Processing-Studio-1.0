@@ -20,9 +20,7 @@ namespace Image_Processing_Studio_1._0
 {
     public partial class Form1 : Form
     {
-        UMat img;
-        public static UMat img_crop;
-        public static UMat img_cropped;
+        public static UMat img;
         List<ImageHistory> imgList;
         const int CAPACITY = 100;
         int curIndex = -1;
@@ -222,6 +220,7 @@ namespace Image_Processing_Studio_1._0
                 btnSaturation.Enabled = false;
                 btnColorAdjust.Enabled = false;
                 btnCrop.Enabled = false;
+                btnUndo.Enabled = false;
             }
             else
             {
@@ -244,6 +243,10 @@ namespace Image_Processing_Studio_1._0
                     btnSaturation.Enabled = true;
                     btnColorAdjust.Enabled = true;
                     btnCrop.Enabled = true;
+                    if (imgList[curIndex].History.Count > 0)
+                        btnUndo.Enabled = true;
+                    else
+                        btnUndo.Enabled = false;
                 }
             }
         }
@@ -278,6 +281,7 @@ namespace Image_Processing_Studio_1._0
                 HistogramUpdate(img.ToImage<Bgr, Byte>());
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
+                uiUpdate();
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 
@@ -382,23 +386,32 @@ namespace Image_Processing_Studio_1._0
          
          private void btnCrop_Click(object sender, EventArgs e)
         {
-            img_crop = img;
             var frm = new Form2();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosed += delegate {
-                this.Show();
-                img = img_cropped;
-                redrawImg();
-            };
-            frm.Show();
-            this.Hide();
+            frm.ApplyClicked += onProcessingApplyClicked;
+            frm.ShowDialog();
          }
+
 
         private void VignetteButton_Click(object sender, EventArgs e)
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(vignette);
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                imgList[curIndex].History.Pop();
+                uiUpdate();
+                reloadImage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
