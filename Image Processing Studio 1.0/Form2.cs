@@ -221,8 +221,19 @@ namespace Image_Processing_Studio_1._0
             ((PictureBox)sender).Invalidate();
         }
 
-        #endregion
 
-        
+        #endregion
+        ///\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Display a MsgBox asking the user to save changes or abort.
+            if (MessageBox.Show("Do you want to keep the changes?", "My Application",
+               MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                // Cancel the Closing event from closing the form.
+                e.Cancel = true;
+                // Call method to save file...
+            }
+        }
     }
 }
