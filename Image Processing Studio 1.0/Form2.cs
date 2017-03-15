@@ -20,7 +20,9 @@ namespace Image_Processing_Studio_1._0
     public partial class Form2 : Form
     {
         UMat img;
+        UMat OutImg;
         Image<Bgr, byte> displayImage;
+        bool Ischanged = false;
 
         public Form2()
         {
@@ -137,7 +139,7 @@ namespace Image_Processing_Studio_1._0
         }
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         #region EVENTs PICTURE BOX
-        private Image<Bgr, byte> imgEntrada;
+        //private UMat imgEntrada;//Image<Bgr, byte> imgEntrada;
         private Point RectStartPoint;
         private Rectangle Rect = new Rectangle();
         private Rectangle RealImageRect = new Rectangle();
@@ -147,6 +149,7 @@ namespace Image_Processing_Studio_1._0
         {
             // Determine the initial rectangle coordinates...
             RectStartPoint = e.Location;
+            Ischanged = true;
             Invalidate();
         }
 
@@ -182,7 +185,7 @@ namespace Image_Processing_Studio_1._0
                 Math.Abs(Y0 - Y1));
             #endregion
 
-            imgEntrada = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
+            //imgEntrada = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
             
 
             ((PictureBox)sender).Invalidate();
@@ -209,8 +212,9 @@ namespace Image_Processing_Studio_1._0
             //Define ROI
             if (RealImageRect.Width > 0 && RealImageRect.Height > 0)
             {
-                imgEntrada.ROI = RealImageRect;
-                imageBoxROI.Image = imgEntrada;
+                OutImg = new UMat(img, RealImageRect);
+                imageBoxROI.Image = OutImg;
+
             }
 
         }
@@ -226,14 +230,37 @@ namespace Image_Processing_Studio_1._0
         ///\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Display a MsgBox asking the user to save changes or abort.
-            if (MessageBox.Show("Do you want to keep the changes?", "My Application",
-               MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (Ischanged)
             {
-                // Cancel the Closing event from closing the form.
-                e.Cancel = true;
-                // Call method to save file...
+                // Display a MsgBox asking the user to save changes or abort.
+                if (MessageBox.Show("Do you want to keep the changes?", "My Application",
+                   MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    // Cancel the Closing event from closing the form.
+                    e.Cancel = true;
+                    // Call method to save file...
+                    SendCroppedImage();
+                }
             }
+        }
+
+
+
+        private void SendCroppedImage()
+        {
+            Form1.img_cropped = OutImg;
+        }
+
+        private void cropButton_Click(object sender, EventArgs e)
+        {
+            SendCroppedImage();
+            Ischanged = false;
+            this.Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
