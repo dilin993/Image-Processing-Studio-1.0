@@ -14,6 +14,7 @@ using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
 using ZedGraph;
+using MetadataExtractor;
 
 namespace Image_Processing_Studio_1._0
 {
@@ -29,6 +30,9 @@ namespace Image_Processing_Studio_1._0
         // controls
         SharpeningControl sharpeningControl;
         NoiseRemovalControl noiseRemovalControl;
+        EXIF_view EXIF_details;
+        SaturationAdjustment SaturationControl;
+        ColorAdjustment ColorControl;
 
         public Form1()
         {
@@ -44,6 +48,16 @@ namespace Image_Processing_Studio_1._0
             noiseRemovalControl = new NoiseRemovalControl();
             noiseRemovalControl.Dock = DockStyle.Top;
             noiseRemovalControl.ApplyClicked += onProcessingApplyClicked;
+
+            SaturationControl = new SaturationAdjustment();
+            SaturationControl.Dock = DockStyle.Top;
+            SaturationControl.ApplyClicked += onProcessingApplyClicked;
+
+            ColorControl = new ColorAdjustment();
+            ColorControl.Dock = DockStyle.Top;
+            ColorControl.ApplyClicked += onProcessingApplyClicked;
+
+
         }
 
         public string GetImageFilter()
@@ -119,6 +133,7 @@ namespace Image_Processing_Studio_1._0
             myPane.XAxis.Scale.Max = 255;
             myPane.YAxis.Scale.Min = 0;
             myPane.YAxis.Scale.Max = 2;
+            zedGraphControl1.IsAntiAlias = true;
             // Make sure the Graph gets redrawn
             zedGraphControl1.Invalidate();
         }
@@ -164,7 +179,9 @@ namespace Image_Processing_Studio_1._0
             /// Update the display of image with proper resizing
             if (displayImage == null) return;
 
-            if(displayImage.Width<=pictureBox1.Width && displayImage.Height<=pictureBox1.Height)
+            HistogramUpdate(img.ToImage<Bgr, Byte>());
+
+            if (displayImage.Width<=pictureBox1.Width && displayImage.Height<=pictureBox1.Height)
             {
                 pictureBox1.Image = displayImage;
                 return;
@@ -184,7 +201,6 @@ namespace Image_Processing_Studio_1._0
             }
           
             pictureBox1.Image = new Bitmap(displayImage, width, height);
-            HistogramUpdate(new Image<Bgr, Byte>(new Bitmap(pictureBox1.Image)));
         }
         
 
@@ -197,6 +213,9 @@ namespace Image_Processing_Studio_1._0
                 btnSharpen.Enabled = false;
                 operationTab.Enabled = false;
                 btnDenoise.Enabled = false;
+                EXIF.Enabled = false;
+                btnSaturation.Enabled = false;
+                btnColorAdjust.Enabled = false;
             }
             else
             {
@@ -215,6 +234,9 @@ namespace Image_Processing_Studio_1._0
                     operationTab.Enabled = true;
                     btnSharpen.Enabled = true;
                     btnDenoise.Enabled = true;
+                    EXIF.Enabled = true;
+                    btnSaturation.Enabled = true;
+                    btnColorAdjust.Enabled = true;
                 }
             }
         }
@@ -246,7 +268,7 @@ namespace Image_Processing_Studio_1._0
             {
                 ImageProcessingEventArgs ei = (ImageProcessingEventArgs)e;
                 img = ImageProcessor.getResult(ref img, ei.Parameters);
-                HistogramUpdate(img.ToImage<Bgr,Byte>());
+                HistogramUpdate(img.ToImage<Bgr, Byte>());
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
                 GC.Collect();
@@ -265,18 +287,18 @@ namespace Image_Processing_Studio_1._0
             operationTab.Panel2.Controls.Add(noiseRemovalControl);
         }
 
-        private void HistogramUpdate(Image<Bgr,Byte> img_ref)
+        private void HistogramUpdate(Image<Bgr, Byte> img_ref)
         {
             GraphPane myPane = zedGraphControl1.GraphPane;
 
-            Image<Gray, byte> gray_image = img_ref.Convert<Gray,byte>();
+            Image<Gray, byte> gray_image = img_ref.Convert<Gray, byte>();
 
             DenseHistogram Hist = new DenseHistogram(256, new RangeF(0, 255));
 
             double[] m_gray = new double[256];
             Hist.Calculate(new Image<Gray, byte>[] { gray_image }, false, null);
             Hist.CopyTo(m_gray);
-            double gray_max = m_gray.Max();            
+            double gray_max = m_gray.Max();
 
             double[] m_red = new double[256];
             Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
@@ -308,12 +330,50 @@ namespace Image_Processing_Studio_1._0
             myCurve = myPane.AddCurve("red", index, m_red, Color.Red, SymbolType.None);
             myCurve = myPane.AddCurve("green", index, m_green, Color.Green, SymbolType.None);
             myCurve = myPane.AddCurve("blue", index, m_blue, Color.Blue, SymbolType.None);
-
             zedGraphControl1.Invalidate();
 
         }
 
-        private void btnCrop_Click(object sender, EventArgs e)
+        private void EXIF_Click(object sender, EventArgs e)
+        {
+            EXIF_details = new EXIF_view();
+            try
+            {
+                var directories = ImageMetadataReader.ReadMetadata(imgList[curIndex].Filename);
+                String str;
+                EXIF_details.clearText();
+                foreach (var directory in directories)
+                {
+
+                    foreach (var tag in directory.Tags)
+                    {
+                        str = $"[{directory.Name}] {tag.Name} = {tag.Description}";
+                        //Console.WriteLine(str);
+                        EXIF_details.Show();
+                        EXIF_details.updateDetails(str);
+                    }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void btnSaturation_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(SaturationControl);
+        }
+
+        private void btnColorAdjust_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(ColorControl);
+         }
+         
+         private void btnCrop_Click(object sender, EventArgs e)
         {
             img_crop = img;
             var frm = new Form2();
@@ -322,6 +382,6 @@ namespace Image_Processing_Studio_1._0
             frm.FormClosing += delegate { this.Show(); };
             frm.Show();
             this.Hide();
-        }
+         }
     }
 }

@@ -18,6 +18,8 @@ namespace Image_Processing_Studio_1._0
         public const string GaussianFiltering = "gaussian filtering";
         public const string MedianFiltering = "median filtering";
         public const string N1MeansDenoising = "n1 means denoising";
+        public const string SaturationAdjusting = "saturation adjustment";
+        public const string ColorAdjusting = "color adjustment";
     }
 
     class ImageProcessor
@@ -36,6 +38,8 @@ namespace Image_Processing_Studio_1._0
             /// <remarks>
             /// Used for image sharpening.
             /// </remarks>
+            /// 
+
             
             UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
             UMat dblBlurImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
@@ -112,6 +116,41 @@ namespace Image_Processing_Studio_1._0
             return outImg;
         }
 
+        public static UMat getSaturationAdjusted(ref UMat img,double amount)
+        {
+            Image<Hsv, double> outImg = img.ToImage<Hsv, double>();
+            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            outImg = img.ToImage<Hsv, double>();
+            var colors = new VectorOfUMat(3);
+            CvInvoke.Split(outImg, colors);
+            double shift = (1+amount) >= 0.0 ? 1+amount : 0;
+            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0,0, colors[1]);            
+            CvInvoke.Merge(colors, dblImg);
+            return dblImg;
+            
+        }
+
+        public static UMat getColorAdjusted(ref UMat img,double redshift,double greenshift,double blueshift)
+        {
+            double shift;
+            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            var colors = new VectorOfUMat(3);
+            CvInvoke.Split(img, colors);
+            shift = (1 + redshift) > 0 ? (1 + redshift) : 0;
+            CvInvoke.AddWeighted(colors[0],shift, colors[0],0,0,colors[0]);
+            shift = (1 + greenshift) > 0 ? (1 + greenshift) : 0;
+            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);
+            shift = (1 + blueshift) > 0 ? (1 + blueshift) : 0;
+            CvInvoke.AddWeighted(colors[2], shift, colors[2], 0, 0, colors[2]);
+            CvInvoke.Merge(colors, dblImg);
+            return dblImg;
+
+
+        }
+
+
+
         public static UMat getResult(ref UMat img, string[] parameters)
         {
             /// <summary>
@@ -147,6 +186,11 @@ namespace Image_Processing_Studio_1._0
                 case ImageProcessingTypes.N1MeansDenoising:
                     return getN1MeanFiltered(ref img, float.Parse(parameters[1]), float.Parse(parameters[2]));
 
+                case ImageProcessingTypes.SaturationAdjusting:
+                    return getSaturationAdjusted(ref img, double.Parse(parameters[1]));
+
+                case ImageProcessingTypes.ColorAdjusting:
+                    return getColorAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]), double.Parse(parameters[3]));
                 default:
                     return img;
             }
