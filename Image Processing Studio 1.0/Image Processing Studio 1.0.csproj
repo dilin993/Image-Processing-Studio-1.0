@@ -53,8 +53,14 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV.DebuggerVisualizers.VS2015">
+      <HintPath>..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.DebuggerVisualizers.VS2015.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV.UI">
       <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI.GL">
+      <HintPath>..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.GL.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.World.dll</HintPath>
@@ -106,6 +112,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageHistory.cs" />
     <Compile Include="ImageProcessingEventArgs.cs" />
     <Compile Include="ImageProcessor.cs" />
@@ -137,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoiseRemovalControl.resx">
       <DependentUpon>NoiseRemovalControl.cs</DependentUpon>

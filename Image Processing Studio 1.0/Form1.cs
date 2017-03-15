@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;
+using Emgu.CV.UI;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.Drawing.Imaging;
-
 using ZedGraph;
 using MetadataExtractor;
 
@@ -21,6 +21,7 @@ namespace Image_Processing_Studio_1._0
     public partial class Form1 : Form
     {
         UMat img;
+        public static UMat img_crop;
         List<ImageHistory> imgList;
         const int CAPACITY = 100;
         int curIndex = -1;
@@ -370,6 +371,17 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(ColorControl);
-        }
+         }
+         
+         private void btnCrop_Click(object sender, EventArgs e)
+        {
+            img_crop = img;
+            var frm = new Form2();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.FormClosing += delegate { this.Show(); };
+            frm.Show();
+            this.Hide();
+         }
     }
 }
