@@ -132,6 +132,12 @@
     <Compile Include="SaturationAdjustment.Designer.cs">
       <DependentUpon>SaturationAdjustment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vignette.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vignette.Designer.cs">
+      <DependentUpon>Vignette.cs</DependentUpon>
+    </Compile>
     <Compile Include="SharpeningControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </Compile>
     <EmbeddedResource Include="SaturationAdjustment.resx">
       <DependentUpon>SaturationAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vignette.resx">
+      <DependentUpon>Vignette.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpeningControl.resx">
       <DependentUpon>SharpeningControl.cs</DependentUpon>

@@ -20,6 +20,7 @@ namespace Image_Processing_Studio_1._0
         public const string N1MeansDenoising = "n1 means denoising";
         public const string SaturationAdjusting = "saturation adjustment";
         public const string ColorAdjusting = "color adjustment";
+        public const string Vignette = "vignette";
     }
 
     class ImageProcessor
@@ -130,6 +131,76 @@ namespace Image_Processing_Studio_1._0
             
         }
 
+        public static UMat getVignetteAdjusted(ref UMat img, int radi, int intensity)
+        {
+            Mat dblImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            Mat outImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            img.ConvertTo(outImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+
+            Image<Bgr, Byte> a = outImg.ToImage<Bgr, Byte>();
+            Bgr CurrentColor = new Bgr(0, 0, 0);
+
+            for (int i = 0; i < dblImg.Rows; i++)
+            {
+                for (int j = 0; j < dblImg.Cols; j++)
+                {
+                    if (i < radi)
+                    {
+                        CurrentColor = a[i, j];
+                        double red = CurrentColor.Red;
+                        double green = CurrentColor.Green;
+                        double blue = CurrentColor.Blue;
+                        double newred = red - (double)radi + (double)i;
+                        double newgreen = green - (double)radi + (double)i;
+                        double newblue = blue - (double)radi + (double)i;
+                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
+                        a[i, j] = SetColor;
+                    }
+                    if ( j < radi)
+                    {
+                        CurrentColor = a[i, j];
+                        double red = CurrentColor.Red;
+                        double green = CurrentColor.Green;
+                        double blue = CurrentColor.Blue;
+                        double newred = red - (double)radi + (double)j;
+                        double newgreen = green - (double)radi + (double)j;
+                        double newblue = blue - (double)radi + (double)j;
+                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
+                        a[i, j] = SetColor;
+                    }
+
+                    if ( i > dblImg.Rows - radi )
+                    {
+                        CurrentColor = a[i, j];
+                        double red = CurrentColor.Red;
+                        double green = CurrentColor.Green;
+                        double blue = CurrentColor.Blue;
+                        double newred = red - (double)radi + (double)dblImg.Rows - (double)i;
+                        double newgreen = green - (double)radi + (double)dblImg.Rows - (double)i;
+                        double newblue = blue - (double)radi + (double)dblImg.Rows - (double)i;
+                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
+                        a[i, j] = SetColor;
+                    }
+
+                    if ( j > dblImg.Cols - radi)
+                    {
+                        CurrentColor = a[i, j];
+                        double red = CurrentColor.Red;
+                        double green = CurrentColor.Green;
+                        double blue = CurrentColor.Blue;
+                        double newred = red - (double)radi + (double)dblImg.Cols - (double)j;
+                        double newgreen = green - (double)radi + (double)dblImg.Cols - (double)j;
+                        double newblue = blue - (double)radi + (double)dblImg.Cols - (double)j;
+                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
+                        a[i, j] = SetColor;
+                    }
+                }
+            }
+
+            return a.ToUMat();
+        }
+
         public static UMat getColorAdjusted(ref UMat img,double redshift,double greenshift,double blueshift)
         {
             double shift;
@@ -188,6 +259,9 @@ namespace Image_Processing_Studio_1._0
 
                 case ImageProcessingTypes.SaturationAdjusting:
                     return getSaturationAdjusted(ref img, double.Parse(parameters[1]));
+
+                case ImageProcessingTypes.Vignette:
+                    return getVignetteAdjusted(ref img, int.Parse(parameters[1]), int.Parse(parameters[2]));
 
                 case ImageProcessingTypes.ColorAdjusting:
                     return getColorAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]), double.Parse(parameters[3]));
