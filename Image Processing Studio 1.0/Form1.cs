@@ -319,7 +319,7 @@ namespace Image_Processing_Studio_1._0
             var frm = new Form2();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
-            frm.FormClosing += delegate { this.Show(); };
+            frm.FormClosed += delegate { this.Show(); };
             frm.Show();
             this.Hide();
         }
