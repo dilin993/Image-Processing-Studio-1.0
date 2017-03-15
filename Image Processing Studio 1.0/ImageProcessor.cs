@@ -20,6 +20,7 @@ namespace Image_Processing_Studio_1._0
         public const string N1MeansDenoising = "n1 means denoising";
         public const string SaturationAdjusting = "saturation adjustment";
         public const string ColorAdjusting = "color adjustment";
+        public const string Cropping = "cropping";
     }
 
     class ImageProcessor
@@ -149,6 +150,13 @@ namespace Image_Processing_Studio_1._0
 
         }
 
+        public static UMat getCropped(ref UMat img, int x, int y,int width, int height)
+        {
+            UMat outImg = new UMat(img, new Rectangle(x, y, width, height));
+            img.Dispose();
+            return outImg;
+        }
+
 
 
         public static UMat getResult(ref UMat img, string[] parameters)
@@ -190,7 +198,12 @@ namespace Image_Processing_Studio_1._0
                     return getSaturationAdjusted(ref img, double.Parse(parameters[1]));
 
                 case ImageProcessingTypes.ColorAdjusting:
-                    return getColorAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]), double.Parse(parameters[3]));
+                    return getColorAdjusted(ref img, double.Parse(parameters[1]), 
+                        double.Parse(parameters[2]), double.Parse(parameters[3]));
+
+                case ImageProcessingTypes.Cropping:
+                    return getCropped(ref img, int.Parse(parameters[1]), int.Parse(parameters[2]),
+                        int.Parse(parameters[3]), int.Parse(parameters[4]));
                 default:
                     return img;
             }
