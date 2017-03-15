@@ -36,6 +36,10 @@
             this.RedBar = new System.Windows.Forms.TrackBar();
             this.GreenBar = new System.Windows.Forms.TrackBar();
             this.BlueBar = new System.Windows.Forms.TrackBar();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.RedShiftVal = new System.Windows.Forms.Label();
+            this.GreenShiftVal = new System.Windows.Forms.Label();
+            this.BlueShiftVal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlueBar)).BeginInit();
@@ -61,7 +65,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 74);
+            this.label9.Location = new System.Drawing.Point(3, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(27, 13);
             this.label9.TabIndex = 2;
@@ -70,7 +74,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(22, 155);
+            this.label10.Location = new System.Drawing.Point(3, 181);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 13);
             this.label10.TabIndex = 3;
@@ -79,7 +83,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(22, 115);
+            this.label11.Location = new System.Drawing.Point(3, 117);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 13);
             this.label11.TabIndex = 5;
@@ -87,36 +91,77 @@
             // 
             // RedBar
             // 
-            this.RedBar.Location = new System.Drawing.Point(71, 53);
+            this.RedBar.Location = new System.Drawing.Point(0, 69);
             this.RedBar.Maximum = 255;
             this.RedBar.Minimum = -255;
             this.RedBar.Name = "RedBar";
-            this.RedBar.Size = new System.Drawing.Size(170, 45);
+            this.RedBar.Size = new System.Drawing.Size(241, 45);
             this.RedBar.TabIndex = 9;
             this.RedBar.Scroll += new System.EventHandler(this.RedBar_Scroll);
             // 
             // GreenBar
             // 
-            this.GreenBar.Location = new System.Drawing.Point(71, 104);
+            this.GreenBar.Location = new System.Drawing.Point(6, 133);
             this.GreenBar.Maximum = 255;
             this.GreenBar.Minimum = -255;
             this.GreenBar.Name = "GreenBar";
-            this.GreenBar.Size = new System.Drawing.Size(170, 45);
+            this.GreenBar.Size = new System.Drawing.Size(235, 45);
             this.GreenBar.TabIndex = 7;
             this.GreenBar.Scroll += new System.EventHandler(this.GreenBar_Scroll);
             // 
             // BlueBar
             // 
-            this.BlueBar.Location = new System.Drawing.Point(71, 155);
+            this.BlueBar.Location = new System.Drawing.Point(6, 194);
             this.BlueBar.Maximum = 255;
             this.BlueBar.Minimum = -255;
             this.BlueBar.Name = "BlueBar";
-            this.BlueBar.Size = new System.Drawing.Size(170, 45);
+            this.BlueBar.Size = new System.Drawing.Size(235, 45);
             this.BlueBar.TabIndex = 8;
             this.BlueBar.Scroll += new System.EventHandler(this.BlueBar_Scroll);
             // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(166, 20);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 10;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // RedShiftVal
+            // 
+            this.RedShiftVal.AutoSize = true;
+            this.RedShiftVal.Location = new System.Drawing.Point(43, 53);
+            this.RedShiftVal.Name = "RedShiftVal";
+            this.RedShiftVal.Size = new System.Drawing.Size(33, 13);
+            this.RedShiftVal.TabIndex = 11;
+            this.RedShiftVal.Text = "value";
+            // 
+            // GreenShiftVal
+            // 
+            this.GreenShiftVal.AutoSize = true;
+            this.GreenShiftVal.Location = new System.Drawing.Point(45, 117);
+            this.GreenShiftVal.Name = "GreenShiftVal";
+            this.GreenShiftVal.Size = new System.Drawing.Size(33, 13);
+            this.GreenShiftVal.TabIndex = 12;
+            this.GreenShiftVal.Text = "value";
+            // 
+            // BlueShiftVal
+            // 
+            this.BlueShiftVal.AutoSize = true;
+            this.BlueShiftVal.Location = new System.Drawing.Point(45, 181);
+            this.BlueShiftVal.Name = "BlueShiftVal";
+            this.BlueShiftVal.Size = new System.Drawing.Size(33, 13);
+            this.BlueShiftVal.TabIndex = 13;
+            this.BlueShiftVal.Text = "value";
+            // 
             // ColorAdjustment
             // 
+            this.Controls.Add(this.BlueShiftVal);
+            this.Controls.Add(this.GreenShiftVal);
+            this.Controls.Add(this.RedShiftVal);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.BlueBar);
             this.Controls.Add(this.GreenBar);
             this.Controls.Add(this.RedBar);
@@ -158,5 +203,9 @@
         private System.Windows.Forms.TrackBar RedBar;
         private System.Windows.Forms.TrackBar GreenBar;
         private System.Windows.Forms.TrackBar BlueBar;
+        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Label RedShiftVal;
+        private System.Windows.Forms.Label GreenShiftVal;
+        private System.Windows.Forms.Label BlueShiftVal;
     }
 }
