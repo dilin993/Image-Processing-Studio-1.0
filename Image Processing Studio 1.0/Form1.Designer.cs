@@ -50,6 +50,8 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnUndo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,6 +70,7 @@
             this.operationTab.Panel1.SuspendLayout();
             this.operationTab.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -127,6 +130,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel2);
+            this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel3);
             this.splitContainer3.Size = new System.Drawing.Size(589, 455);
             this.splitContainer3.SplitterDistance = 404;
             this.splitContainer3.TabIndex = 0;
@@ -143,13 +147,12 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel2.Controls.Add(this.btnPrev);
             this.flowLayoutPanel2.Controls.Add(this.btnNext);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(589, 47);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(371, 47);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // btnPrev
@@ -336,6 +339,28 @@
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Import image(s)";
             // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.btnUndo);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(389, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 47);
+            this.flowLayoutPanel3.TabIndex = 2;
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
+            this.btnUndo.Location = new System.Drawing.Point(157, 3);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnUndo.Size = new System.Drawing.Size(40, 40);
+            this.btnUndo.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnUndo, "Undo");
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +391,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.operationTab)).EndInit();
             this.operationTab.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -392,6 +418,8 @@
         private System.Windows.Forms.Button btnSaturation;
         private System.Windows.Forms.Button btnColorAdjust;
         private System.Windows.Forms.Button btnCrop;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Button btnUndo;
     }
 }
 
