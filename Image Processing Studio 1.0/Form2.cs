@@ -136,15 +136,12 @@ namespace Image_Processing_Studio_1._0
             }  
         }
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        #region EVENTOS PICTURE BOX | DEFINIÇÃO DE ROI
+        #region EVENTs PICTURE BOX
         private Image<Bgr, byte> imgEntrada;
         private Point RectStartPoint;
         private Rectangle Rect = new Rectangle();
         private Rectangle RealImageRect = new Rectangle();
         private Brush selectionBrush = new SolidBrush(Color.FromArgb(128, 64, 64, 64));
-        private int thickness = 3;
-
-
 
         private void pictureBox1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -152,7 +149,6 @@ namespace Image_Processing_Studio_1._0
             RectStartPoint = e.Location;
             Invalidate();
         }
-
 
         private void pictureBox1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -175,8 +171,7 @@ namespace Image_Processing_Studio_1._0
 
             #region SETS COORDINATES AT REAL IMAGE
             //Coordinates at real image - Create ROI
-            ConvertCoordinates(pictureBox1, out X0, out Y0,
-            RectStartPoint.X, RectStartPoint.Y);
+            ConvertCoordinates(pictureBox1, out X0, out Y0,RectStartPoint.X, RectStartPoint.Y);
             int X1, Y1;
             ConvertCoordinates(pictureBox1, out X1, out Y1, tempEndPoint.X, tempEndPoint.Y);
             RealImageRect.Location = new Point(
@@ -185,12 +180,10 @@ namespace Image_Processing_Studio_1._0
             RealImageRect.Size = new Size(
                 Math.Abs(X0 - X1),
                 Math.Abs(Y0 - Y1));
-
-           
-            imgEntrada = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
-            imgEntrada.Draw(RealImageRect, new Bgr(Color.Red), thickness);
-            imageBoxOutputROI.Image = imgEntrada;
             #endregion
+
+            imgEntrada = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
+            
 
             ((PictureBox)sender).Invalidate();
         }
@@ -203,10 +196,9 @@ namespace Image_Processing_Studio_1._0
             {
                 if (Rect != null && Rect.Width > 0 && Rect.Height > 0)
                 {
-                    //Seleciona a ROI
+                    //Select a ROI
                     e.Graphics.SetClip(Rect, System.Drawing.Drawing2D.CombineMode.Exclude);
-                    e.Graphics.FillRectangle(selectionBrush, new Rectangle
-            (0, 0, ((PictureBox)sender).Width, ((PictureBox)sender).Height));
+                    e.Graphics.FillRectangle(selectionBrush, new Rectangle(0, 0, ((PictureBox)sender).Width, ((PictureBox)sender).Height));
                     //e.Graphics.FillRectangle(selectionBrush, Rect);
                 }
             }
@@ -214,7 +206,7 @@ namespace Image_Processing_Studio_1._0
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            //Define ROI. Valida altura e largura para evitar index range exception.
+            //Define ROI
             if (RealImageRect.Width > 0 && RealImageRect.Height > 0)
             {
                 imgEntrada.ROI = RealImageRect;
