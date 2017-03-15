@@ -398,6 +398,7 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(vignette);
+        }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
