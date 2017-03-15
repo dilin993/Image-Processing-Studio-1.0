@@ -32,6 +32,7 @@ namespace Image_Processing_Studio_1._0
         EXIF_view EXIF_details;
         SaturationAdjustment SaturationControl;
         ColorAdjustment ColorControl;
+        Vignette vignette;
 
         public Form1()
         {
@@ -56,6 +57,9 @@ namespace Image_Processing_Studio_1._0
             ColorControl.Dock = DockStyle.Top;
             ColorControl.ApplyClicked += onProcessingApplyClicked;
 
+            vignette = new Vignette();
+            vignette.Dock = DockStyle.Top;
+            vignette.ApplyClicked += onProcessingApplyClicked;
 
         }
 
@@ -389,6 +393,12 @@ namespace Image_Processing_Studio_1._0
             frm.ShowDialog();
          }
 
+
+        private void VignetteButton_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(vignette);
+
         private void btnUndo_Click(object sender, EventArgs e)
         {
             try
@@ -401,6 +411,7 @@ namespace Image_Processing_Studio_1._0
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }

@@ -50,8 +50,10 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.VignetteButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUndo = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -217,6 +219,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSaturation);
             this.flowLayoutPanel1.Controls.Add(this.btnColorAdjust);
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
+            this.flowLayoutPanel1.Controls.Add(this.VignetteButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -339,6 +342,21 @@
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Import image(s)";
             // 
+
+            // VignetteButton
+            // 
+            this.VignetteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VignetteButton.Image = ((System.Drawing.Image)(resources.GetObject("VignetteButton.Image")));
+            this.VignetteButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.VignetteButton.Location = new System.Drawing.Point(637, 3);
+            this.VignetteButton.Name = "VignetteButton";
+            this.VignetteButton.Size = new System.Drawing.Size(82, 69);
+            this.VignetteButton.TabIndex = 7;
+            this.VignetteButton.Text = "Vignette";
+            this.VignetteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.VignetteButton.UseVisualStyleBackColor = true;
+            this.VignetteButton.Click += new System.EventHandler(this.VignetteButton_Click);
+
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnUndo);
@@ -360,6 +378,7 @@
             this.toolTip1.SetToolTip(this.btnUndo, "Undo");
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+
             // 
             // Form1
             // 
@@ -418,8 +437,10 @@
         private System.Windows.Forms.Button btnSaturation;
         private System.Windows.Forms.Button btnColorAdjust;
         private System.Windows.Forms.Button btnCrop;
+        private System.Windows.Forms.Button VignetteButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button btnUndo;
+
     }
 }
 
