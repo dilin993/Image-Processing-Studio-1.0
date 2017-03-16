@@ -8,6 +8,8 @@ using Emgu.CV;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using Emgu.CV.CvEnum;
 
 
 namespace Image_Processing_Studio_1._0
@@ -22,6 +24,7 @@ namespace Image_Processing_Studio_1._0
         public const string ColorAdjusting = "color adjustment";
         public const string Vignette = "vignette";
         public const string Cropping = "cropping";
+        public const string ColorTemperatureAdjusting = "color temperature adjusting";
     }
 
     class ImageProcessor
@@ -132,6 +135,74 @@ namespace Image_Processing_Studio_1._0
             CvInvoke.Merge(colors, dblImg);
             return dblImg;
             
+        }
+
+        public static void ColorTemperatureToRGB(int kelvin, out int r, out int g, out int b)
+        {
+            int temp = kelvin / 100;
+            if (temp <= 65)
+            {
+                r = 255;
+                g = temp;
+                g = (int)Math.Round(99.4708025861 * Math.Log(g) - 161.1195681661);
+
+                if (temp <= 19)
+                {
+                    b = 0;
+                }
+                else
+                {
+                    b = temp - 10;
+                    b = (int)Math.Round(138.5177312231 * Math.Log(b) - 305.0447927307);
+                }
+            }
+            else
+            {
+                r = temp - 60;
+                r = (int)Math.Round(329.698727446 * Math.Pow(r, -0.1332047592));
+
+                g = temp - 60;
+                g = (int)Math.Round(288.1221695283 * Math.Pow(g, -0.0755148492));
+
+                b = 255;
+            }
+
+            r = clamp(r, 0, 255);
+            g = clamp(g, 0, 255);
+            b = clamp(b, 0, 255);
+        }
+
+
+
+        public static int clamp(int x, int min, int max)
+        {
+
+
+
+            if (x < min) { return min; }
+
+            if (x > max) { return max; }
+
+
+
+            return x;
+        }
+
+        public static UMat getColorTemperatureAdjusted(ref UMat img, int r, int g, int b)
+        {
+            float[] data = {(float)b/255.0f,0f,0f,
+                            0f,(float)g/255.0f,0f,
+                            0f,0f,(float)r/255.0f};
+            Mat colMat = new Mat(new Size(3, 3), DepthType.Cv32F, 1);
+
+            Marshal.Copy(data, 0, colMat.DataPointer, 9);
+            //UMat reshaped = srcMat.Reshape(1, srcImg.Cols * srcImg.Rows);
+            UMat outMat = new UMat();
+            CvInvoke.Transform(img, outMat, colMat);
+            outMat = outMat.Reshape(3, img.Rows);
+            img.Dispose();
+            colMat.Dispose();
+            return outMat;
         }
 
         public static UMat getVignetteAdjusted(ref UMat img, int radi, int intensity)
@@ -280,6 +351,11 @@ namespace Image_Processing_Studio_1._0
                 case ImageProcessingTypes.Cropping:
                     return getCropped(ref img, int.Parse(parameters[1]), int.Parse(parameters[2]),
                         int.Parse(parameters[3]), int.Parse(parameters[4]));
+
+                case ImageProcessingTypes.ColorTemperatureAdjusting:
+                    return getColorTemperatureAdjusted(ref img, int.Parse(parameters[1]),
+                        int.Parse(parameters[2]), int.Parse(parameters[3]));
+
                 default:
                     return img;
             }

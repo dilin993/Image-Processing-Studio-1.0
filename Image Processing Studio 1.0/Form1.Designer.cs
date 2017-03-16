@@ -53,6 +53,7 @@
             this.btnVignette = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnColorTemp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -241,6 +242,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnColorAdjust);
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
+            this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -377,6 +379,20 @@
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Import image(s)";
             // 
+            // btnColorTemp
+            // 
+            this.btnColorTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColorTemp.Image = ((System.Drawing.Image)(resources.GetObject("btnColorTemp.Image")));
+            this.btnColorTemp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnColorTemp.Location = new System.Drawing.Point(725, 3);
+            this.btnColorTemp.Name = "btnColorTemp";
+            this.btnColorTemp.Size = new System.Drawing.Size(82, 69);
+            this.btnColorTemp.TabIndex = 8;
+            this.btnColorTemp.Text = "Temp";
+            this.btnColorTemp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnColorTemp.UseVisualStyleBackColor = true;
+            this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,7 +453,7 @@
         private System.Windows.Forms.Button btnVignette;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button btnUndo;
-
+        private System.Windows.Forms.Button btnColorTemp;
     }
 }
 
