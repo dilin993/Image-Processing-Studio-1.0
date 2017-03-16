@@ -60,8 +60,8 @@ namespace Image_Processing_Studio_1._0
 
         private void SaturationAdjustment_Load(object sender, EventArgs e)
         {
-            SaturationLevel.Value = (int)Math.Round((DEFAULT_AMOUNT - MIN_AMOUNT) * (SaturationLevel.Maximum - SaturationLevel.Minimum) /
-                (SaturationLevel.TickFrequency * (MAX_AMOUNT - MIN_AMOUNT)));
+            SaturationLevel.Value = (int)(Math.Round((DEFAULT_AMOUNT - MIN_AMOUNT) * (SaturationLevel.Maximum - SaturationLevel.Minimum) /
+                (SaturationLevel.TickFrequency * (MAX_AMOUNT - MIN_AMOUNT))) + SaturationLevel.Minimum);
         }
     }
 }
