@@ -209,7 +209,7 @@ namespace Image_Processing_Studio_1._0
 
         private void uiUpdate()
         {
-            if(imgList.Count<=0)
+            if(imgList.Count<=0 || curIndex < 0 || curIndex >= imgList.Count)
             {
                 btnPrev.Enabled = false;
                 btnNext.Enabled = false;
@@ -221,6 +221,9 @@ namespace Image_Processing_Studio_1._0
                 btnColorAdjust.Enabled = false;
                 btnCrop.Enabled = false;
                 btnUndo.Enabled = false;
+                btnSave.Enabled = false;
+                btnVignette.Enabled = false;
+                
             }
             else
             {
@@ -234,20 +237,21 @@ namespace Image_Processing_Studio_1._0
                 else
                     btnPrev.Enabled = false;
 
-                if(curIndex>=0 && curIndex<imgList.Count)
-                {
-                    operationTab.Enabled = true;
-                    btnSharpen.Enabled = true;
-                    btnDenoise.Enabled = true;
-                    EXIF.Enabled = true;
-                    btnSaturation.Enabled = true;
-                    btnColorAdjust.Enabled = true;
-                    btnCrop.Enabled = true;
-                    if (imgList[curIndex].History.Count > 0)
-                        btnUndo.Enabled = true;
-                    else
-                        btnUndo.Enabled = false;
-                }
+               
+                operationTab.Enabled = true;
+                btnSharpen.Enabled = true;
+                btnDenoise.Enabled = true;
+                EXIF.Enabled = true;
+                btnSaturation.Enabled = true;
+                btnColorAdjust.Enabled = true;
+                btnCrop.Enabled = true;
+                btnSave.Enabled = true;
+                btnVignette.Enabled = true;
+                if (imgList[curIndex].History.Count > 0)
+                    btnUndo.Enabled = true;
+                else
+                    btnUndo.Enabled = false;
+                
             }
         }
 

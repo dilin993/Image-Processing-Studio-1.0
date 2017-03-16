@@ -50,7 +50,7 @@
             this.btnSaturation = new System.Windows.Forms.Button();
             this.btnColorAdjust = new System.Windows.Forms.Button();
             this.btnCrop = new System.Windows.Forms.Button();
-            this.VignetteButton = new System.Windows.Forms.Button();
+            this.btnVignette = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -240,7 +240,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSaturation);
             this.flowLayoutPanel1.Controls.Add(this.btnColorAdjust);
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
-            this.flowLayoutPanel1.Controls.Add(this.VignetteButton);
+            this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -358,19 +358,19 @@
             this.btnCrop.UseVisualStyleBackColor = true;
             this.btnCrop.Click += new System.EventHandler(this.btnCrop_Click);
             // 
-            // VignetteButton
+            // btnVignette
             // 
-            this.VignetteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VignetteButton.Image = ((System.Drawing.Image)(resources.GetObject("VignetteButton.Image")));
-            this.VignetteButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.VignetteButton.Location = new System.Drawing.Point(637, 3);
-            this.VignetteButton.Name = "VignetteButton";
-            this.VignetteButton.Size = new System.Drawing.Size(82, 69);
-            this.VignetteButton.TabIndex = 7;
-            this.VignetteButton.Text = "Vignette";
-            this.VignetteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.VignetteButton.UseVisualStyleBackColor = true;
-            this.VignetteButton.Click += new System.EventHandler(this.VignetteButton_Click);
+            this.btnVignette.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVignette.Image = ((System.Drawing.Image)(resources.GetObject("btnVignette.Image")));
+            this.btnVignette.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVignette.Location = new System.Drawing.Point(637, 3);
+            this.btnVignette.Name = "btnVignette";
+            this.btnVignette.Size = new System.Drawing.Size(82, 69);
+            this.btnVignette.TabIndex = 7;
+            this.btnVignette.Text = "Vignette";
+            this.btnVignette.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVignette.UseVisualStyleBackColor = true;
+            this.btnVignette.Click += new System.EventHandler(this.VignetteButton_Click);
             // 
             // openFileDialog1
             // 
@@ -434,7 +434,7 @@
         private System.Windows.Forms.Button btnSaturation;
         private System.Windows.Forms.Button btnColorAdjust;
         private System.Windows.Forms.Button btnCrop;
-        private System.Windows.Forms.Button VignetteButton;
+        private System.Windows.Forms.Button btnVignette;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button btnUndo;
 
