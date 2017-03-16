@@ -210,11 +210,11 @@ namespace Image_Processing_Studio_1._0
             var colors = new VectorOfUMat(3);
             CvInvoke.Split(img, colors);
             shift = (1 + redshift) > 0 ? (1 + redshift) : 0;
-            CvInvoke.AddWeighted(colors[0],shift, colors[0],0,0,colors[0]);
+            CvInvoke.AddWeighted(colors[2],shift, colors[2],0,0,colors[2]);
             shift = (1 + greenshift) > 0 ? (1 + greenshift) : 0;
             CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);
             shift = (1 + blueshift) > 0 ? (1 + blueshift) : 0;
-            CvInvoke.AddWeighted(colors[2], shift, colors[2], 0, 0, colors[2]);
+            CvInvoke.AddWeighted(colors[0], shift, colors[0], 0, 0, colors[0]);
             CvInvoke.Merge(colors, dblImg);
             return dblImg;
 
