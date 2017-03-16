@@ -40,6 +40,7 @@ namespace Image_Processing_Studio_1._0
             InitializeComponent();
             imgList = new List<ImageHistory>(CAPACITY);
             openFileDialog1.Filter = GetImageFilter();
+            saveFileDialog1.Filter = openFileDialog1.Filter;
 
             // initialize user controls
             sharpeningControl = new SharpeningControl();
@@ -431,6 +432,21 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(colorTempControl);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                try
+                {
+                    CvInvoke.Imwrite(saveFileDialog1.FileName, img);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

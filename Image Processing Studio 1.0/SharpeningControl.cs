@@ -17,7 +17,7 @@ namespace Image_Processing_Studio_1._0
     {
 
         private const double MIN_SIGMA = 0.0;
-        private const double MAX_SIGMA = 21.0;
+        private const double MAX_SIGMA = 5.0;
         private const double MIN_AMOUNT = 0.0;
         private const double MAX_AMOUNT = 2.6;
         private const double DEFAULT_SIGMA = 3.0;
