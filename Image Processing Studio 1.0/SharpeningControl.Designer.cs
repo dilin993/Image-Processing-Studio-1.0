@@ -52,7 +52,7 @@
             // tbSigma
             // 
             this.tbSigma.Location = new System.Drawing.Point(72, 62);
-            this.tbSigma.Maximum = 100;
+            this.tbSigma.Maximum = 500;
             this.tbSigma.Name = "tbSigma";
             this.tbSigma.Size = new System.Drawing.Size(155, 45);
             this.tbSigma.TabIndex = 1;
@@ -89,7 +89,7 @@
             // tbAmount
             // 
             this.tbAmount.Location = new System.Drawing.Point(72, 125);
-            this.tbAmount.Maximum = 100;
+            this.tbAmount.Maximum = 260;
             this.tbAmount.Name = "tbAmount";
             this.tbAmount.Size = new System.Drawing.Size(155, 45);
             this.tbAmount.TabIndex = 5;

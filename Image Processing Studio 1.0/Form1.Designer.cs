@@ -54,6 +54,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnColorTemp = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -275,6 +276,7 @@
             this.btnSave.Text = "Export";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnSharpen
             // 
@@ -393,6 +395,10 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Title = "Export Image";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,6 +460,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnColorTemp;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
