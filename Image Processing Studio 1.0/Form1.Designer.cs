@@ -51,10 +51,11 @@
             this.btnColorAdjust = new System.Windows.Forms.Button();
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
+            this.btnColorTemp = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnColorTemp = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnCorrection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -214,6 +215,10 @@
             // operationTab.Panel1
             // 
             this.operationTab.Panel1.Controls.Add(this.zedGraphControl1);
+            // 
+            // operationTab.Panel2
+            // 
+            this.operationTab.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.operationTab.Size = new System.Drawing.Size(304, 455);
             this.operationTab.SplitterDistance = 195;
             this.operationTab.TabIndex = 0;
@@ -244,6 +249,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
+            this.flowLayoutPanel1.Controls.Add(this.btnCorrection);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -376,11 +382,6 @@
             this.btnVignette.UseVisualStyleBackColor = true;
             this.btnVignette.Click += new System.EventHandler(this.VignetteButton_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
             // btnColorTemp
             // 
             this.btnColorTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,9 +396,26 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Title = "Export Image";
+            // 
+            // btnCorrection
+            // 
+            this.btnCorrection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCorrection.Location = new System.Drawing.Point(813, 3);
+            this.btnCorrection.Name = "btnCorrection";
+            this.btnCorrection.Size = new System.Drawing.Size(75, 69);
+            this.btnCorrection.TabIndex = 9;
+            this.btnCorrection.Text = "Hightlights\r\nShadows";
+            this.btnCorrection.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCorrection.UseVisualStyleBackColor = true;
+            this.btnCorrection.Click += new System.EventHandler(this.btnCorrection_Click);
             // 
             // Form1
             // 
@@ -461,6 +479,7 @@
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnColorTemp;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnCorrection;
     }
 }
 

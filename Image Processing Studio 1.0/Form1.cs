@@ -34,6 +34,7 @@ namespace Image_Processing_Studio_1._0
         ColorAdjustment ColorControl;
         Vignette vignette;
         ColorTemperatureControl colorTempControl;
+        HightlightShadows HighlightShadowsControl;
 
         public Form1()
         {
@@ -66,6 +67,10 @@ namespace Image_Processing_Studio_1._0
             colorTempControl = new ColorTemperatureControl();
             colorTempControl.Dock = DockStyle.Top;
             colorTempControl.ApplyClicked += onProcessingApplyClicked;
+
+            HighlightShadowsControl = new HightlightShadows();
+            HighlightShadowsControl.Dock = DockStyle.Top;
+            HighlightShadowsControl.ApplyClicked += onProcessingApplyClicked;
 
         }
 
@@ -230,7 +235,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = false;
                 btnVignette.Enabled = false;
                 btnColorTemp.Enabled = false;
-                
+                btnCorrection.Enabled = false;
             }
             else
             {
@@ -255,6 +260,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = true;
                 btnVignette.Enabled = true;
                 btnColorTemp.Enabled = true;
+                btnCorrection.Enabled = true;
                 if (imgList[curIndex].History.Count > 0)
                     btnUndo.Enabled = true;
                 else
@@ -447,6 +453,12 @@ namespace Image_Processing_Studio_1._0
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnCorrection_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(HighlightShadowsControl);
         }
     }
 }

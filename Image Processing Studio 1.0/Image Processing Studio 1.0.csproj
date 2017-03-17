@@ -139,6 +139,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighlightShadows.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighlightShadows.Designer.cs">
+      <DependentUpon>HighlightShadows.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageHistory.cs" />
     <Compile Include="ImageProcessingEventArgs.cs" />
     <Compile Include="ImageProcessor.cs" />
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighlightShadows.resx">
+      <DependentUpon>HighlightShadows.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoiseRemovalControl.resx">
       <DependentUpon>NoiseRemovalControl.cs</DependentUpon>
