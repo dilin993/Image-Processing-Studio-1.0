@@ -152,9 +152,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)i;
-                        double newgreen = green - (double)radi + (double)i;
-                        double newblue = blue - (double)radi + (double)i;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)i;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)i;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)i;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -164,9 +164,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)j;
-                        double newgreen = green - (double)radi + (double)j;
-                        double newblue = blue - (double)radi + (double)j;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)j;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)j;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)j;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -177,9 +177,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)dblImg.Rows - (double)i;
-                        double newgreen = green - (double)radi + (double)dblImg.Rows - (double)i;
-                        double newblue = blue - (double)radi + (double)dblImg.Rows - (double)i;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -190,9 +190,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)dblImg.Cols - (double)j;
-                        double newgreen = green - (double)radi + (double)dblImg.Cols - (double)j;
-                        double newblue = blue - (double)radi + (double)dblImg.Cols - (double)j;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }

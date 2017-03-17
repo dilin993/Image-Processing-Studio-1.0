@@ -17,11 +17,11 @@ namespace Image_Processing_Studio_1._0
     {
 
         private const double MIN_RAD = 0.0;
-        private const double MAX_RAD = 40.0;
-        private const double MIN_INTENSITY = 0.0;
-        private const double MAX_INTENSITY = 10.0;
-        private const double DEFAULT_RAD = 10.0;
-        private const double DEFAULT_INTENSITY = 5.0;
+        private const double MAX_RAD = 200.0;
+        private const double MIN_INTENSITY = -3.0;
+        private const double MAX_INTENSITY = 3.0;
+        private const double DEFAULT_RAD = 50.0;
+        private const double DEFAULT_INTENSITY = 0.0;
         double radi;
         double intensity;
         public event EventHandler ApplyClicked;
