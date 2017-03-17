@@ -114,10 +114,12 @@ namespace Image_Processing_Studio_1._0
             /// <remarks>
             /// Used for image filtering using N1 mean filtering.
             /// </remarks>
-
-            UMat outImg = new UMat(img.Rows, img.Cols, img.Depth, img.NumberOfChannels);
-            CvInvoke.FastNlMeansDenoisingColored(img, outImg, h, hcolor);
+            UMat tmp = new UMat();
+            img.ConvertTo(tmp, DepthType.Cv8U);
+            UMat outImg = new UMat(tmp.Rows, tmp.Cols, tmp.Depth, tmp.NumberOfChannels);
+            CvInvoke.FastNlMeansDenoisingColored(tmp, outImg, h, hcolor);
             img.Dispose();
+            tmp.Dispose();
             return outImg;
         }
 

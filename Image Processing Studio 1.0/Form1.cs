@@ -294,14 +294,14 @@ namespace Image_Processing_Studio_1._0
                 redrawImg();
                 imgList[curIndex].History.Push(ei.ToString());
                 uiUpdate();
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
                 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void btnDenoise_Click(object sender, EventArgs e)
