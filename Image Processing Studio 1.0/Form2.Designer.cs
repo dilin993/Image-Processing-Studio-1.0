@@ -36,6 +36,7 @@
             this.cropButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.imageBoxROI = new Emgu.CV.UI.ImageBox();
+            this.labelPostionXY = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,19 +59,22 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.labelPostionXY);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Panel2.Controls.Add(this.imageBoxROI);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(884, 519);
             this.splitContainer1.SplitterDistance = 510;
             this.splitContainer1.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBox1.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(510, 519);
+            this.pictureBox1.Size = new System.Drawing.Size(484, 489);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -85,7 +89,7 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.flowLayoutPanel1.Controls.Add(this.cropButton);
             this.flowLayoutPanel1.Controls.Add(this.cancelButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(103, 389);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(103, 417);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(190, 54);
             this.flowLayoutPanel1.TabIndex = 5;
@@ -114,12 +118,22 @@
             // 
             // imageBoxROI
             // 
+            this.imageBoxROI.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.imageBoxROI.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.imageBoxROI.Location = new System.Drawing.Point(13, 12);
             this.imageBoxROI.Name = "imageBoxROI";
             this.imageBoxROI.Size = new System.Drawing.Size(342, 310);
             this.imageBoxROI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxROI.TabIndex = 2;
             this.imageBoxROI.TabStop = false;
+            // 
+            // labelPostionXY
+            // 
+            this.labelPostionXY.AutoSize = true;
+            this.labelPostionXY.Location = new System.Drawing.Point(134, 362);
+            this.labelPostionXY.Name = "labelPostionXY";
+            this.labelPostionXY.Size = new System.Drawing.Size(0, 13);
+            this.labelPostionXY.TabIndex = 6;
             // 
             // Form2
             // 
@@ -136,6 +150,7 @@
             this.Resize += new System.EventHandler(this.Form2_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -153,5 +168,6 @@
         private System.Windows.Forms.Button cropButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label labelPostionXY;
     }
 }
