@@ -37,19 +37,36 @@ namespace Image_Processing_Studio_1._0
         {
             gamma = GammaBar.Value * GammaBar.TickFrequency * (Gamma_MAX - Gamma_MIN) / (GammaBar.Maximum - GammaBar.Minimum) + Gamma_MIN;
             GammaVal.Text = gamma.ToString();
+            shadowlevel = 1.0;
+            ShadowBar.Value = 50;
+            highlightlevel = 1.0;
+            HighlightBar.Value = 50;
+            ShadowVal.Text = shadowlevel.ToString();
+            HighlightVal.Text = highlightlevel.ToString();
         }
 
         private void HighlightBar_Scroll(object sender, EventArgs e)
         {
             highlightlevel = HighlightBar.Value * HighlightBar.TickFrequency * (Highlight_MAX - Highlight_MIN) / (HighlightBar.Maximum - HighlightBar.Minimum) + Highlight_MIN;
             HighlightVal.Text = highlightlevel.ToString();
-
+            gamma = 1.0;
+            shadowlevel = 1.0;
+            GammaBar.Value = 50;
+            ShadowBar.Value = 50;
+            ShadowVal.Text = shadowlevel.ToString();
+            GammaVal.Text = gamma.ToString();
         }
 
         private void ShadowBar_Scroll(object sender, EventArgs e)
         {
             shadowlevel = ShadowBar.Value * ShadowBar.TickFrequency * (Shadow_MAX - Shadow_MIN) / (ShadowBar.Maximum - ShadowBar.Minimum) + Shadow_MIN;
             ShadowVal.Text = shadowlevel.ToString();
+            gamma = 1.0;
+            highlightlevel = 1.0;
+            GammaBar.Value = 50;
+            HighlightBar.Value = 50;
+            GammaVal.Text = gamma.ToString();
+            HighlightVal.Text = highlightlevel.ToString();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -66,9 +83,9 @@ namespace Image_Processing_Studio_1._0
 
         private void HightlightShadows_Load(object sender, EventArgs e)
         {
-            gamma = 0.0;
-            highlightlevel = 0.0;
-            shadowlevel = 0.0;
+            gamma = 1.0;
+            highlightlevel = 1.0;
+            shadowlevel = 1.0;
             GammaVal.Text = gamma.ToString();
             HighlightVal.Text = highlightlevel.ToString();
             ShadowVal.Text = shadowlevel.ToString();

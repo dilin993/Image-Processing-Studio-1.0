@@ -300,7 +300,7 @@ namespace Image_Processing_Studio_1._0
         {
             Image<Bgr, Byte> outImg = img.ToImage<Bgr, Byte>();
 
-            if (highlights != 0.0)
+            if (highlights != 1.0)
             {
                 Image<Gray, Byte> gray = outImg.Convert<Gray, Byte>();
                 int[] GammaMap = new int[256];
@@ -329,7 +329,7 @@ namespace Image_Processing_Studio_1._0
                 }
             }
 
-            if (gamma != 0.0)
+            if (gamma != 1.0)
             {
                 
                 int[] GammaMap = new int[256];
@@ -359,7 +359,7 @@ namespace Image_Processing_Studio_1._0
             
 
 
-            if (shadows != 0.0)
+            if (shadows != 1.0)
             {
                 Image<Gray, Byte> gray = outImg.Convert<Gray, Byte>();
                 int[] GammaMap = new int[256];

@@ -105,10 +105,11 @@
             // ShadowBar
             // 
             this.ShadowBar.Location = new System.Drawing.Point(17, 168);
+            this.ShadowBar.Maximum = 100;
             this.ShadowBar.Name = "ShadowBar";
             this.ShadowBar.Size = new System.Drawing.Size(242, 45);
             this.ShadowBar.TabIndex = 6;
-            this.ShadowBar.Value = 5;
+            this.ShadowBar.Value = 50;
             this.ShadowBar.Scroll += new System.EventHandler(this.ShadowBar_Scroll);
             // 
             // GammaVal
