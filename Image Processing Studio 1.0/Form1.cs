@@ -33,12 +33,14 @@ namespace Image_Processing_Studio_1._0
         SaturationAdjustment SaturationControl;
         ColorAdjustment ColorControl;
         Vignette vignette;
+        ColorTemperatureControl colorTempControl;
 
         public Form1()
         {
             InitializeComponent();
             imgList = new List<ImageHistory>(CAPACITY);
             openFileDialog1.Filter = GetImageFilter();
+            saveFileDialog1.Filter = openFileDialog1.Filter;
 
             // initialize user controls
             sharpeningControl = new SharpeningControl();
@@ -60,6 +62,10 @@ namespace Image_Processing_Studio_1._0
             vignette = new Vignette();
             vignette.Dock = DockStyle.Top;
             vignette.ApplyClicked += onProcessingApplyClicked;
+
+            colorTempControl = new ColorTemperatureControl();
+            colorTempControl.Dock = DockStyle.Top;
+            colorTempControl.ApplyClicked += onProcessingApplyClicked;
 
         }
 
@@ -209,7 +215,7 @@ namespace Image_Processing_Studio_1._0
 
         private void uiUpdate()
         {
-            if(imgList.Count<=0)
+            if(imgList.Count<=0 || curIndex < 0 || curIndex >= imgList.Count)
             {
                 btnPrev.Enabled = false;
                 btnNext.Enabled = false;
@@ -221,6 +227,10 @@ namespace Image_Processing_Studio_1._0
                 btnColorAdjust.Enabled = false;
                 btnCrop.Enabled = false;
                 btnUndo.Enabled = false;
+                btnSave.Enabled = false;
+                btnVignette.Enabled = false;
+                btnColorTemp.Enabled = false;
+                
             }
             else
             {
@@ -234,20 +244,22 @@ namespace Image_Processing_Studio_1._0
                 else
                     btnPrev.Enabled = false;
 
-                if(curIndex>=0 && curIndex<imgList.Count)
-                {
-                    operationTab.Enabled = true;
-                    btnSharpen.Enabled = true;
-                    btnDenoise.Enabled = true;
-                    EXIF.Enabled = true;
-                    btnSaturation.Enabled = true;
-                    btnColorAdjust.Enabled = true;
-                    btnCrop.Enabled = true;
-                    if (imgList[curIndex].History.Count > 0)
-                        btnUndo.Enabled = true;
-                    else
-                        btnUndo.Enabled = false;
-                }
+               
+                operationTab.Enabled = true;
+                btnSharpen.Enabled = true;
+                btnDenoise.Enabled = true;
+                EXIF.Enabled = true;
+                btnSaturation.Enabled = true;
+                btnColorAdjust.Enabled = true;
+                btnCrop.Enabled = true;
+                btnSave.Enabled = true;
+                btnVignette.Enabled = true;
+                btnColorTemp.Enabled = true;
+                if (imgList[curIndex].History.Count > 0)
+                    btnUndo.Enabled = true;
+                else
+                    btnUndo.Enabled = false;
+                
             }
         }
 
@@ -296,6 +308,7 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(noiseRemovalControl);
+
         }
 
         private void HistogramUpdate(Image<Bgr, Byte> img_ref)
@@ -414,6 +427,27 @@ namespace Image_Processing_Studio_1._0
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnColorTemp_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(colorTempControl);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                try
+                {
+                    CvInvoke.Imwrite(saveFileDialog1.FileName, img);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

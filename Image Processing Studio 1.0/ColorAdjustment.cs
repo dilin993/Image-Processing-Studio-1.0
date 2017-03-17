@@ -55,14 +55,15 @@ namespace Image_Processing_Studio_1._0
 
         private void ColorAdjustment_Load(object sender, EventArgs e)
         {
-
             RedChange = 0.0;
             GreenChange = 0.0;
             BlueChange = 0.0;
             RedBar.Value = 0;
             GreenBar.Value = 0;
             BlueBar.Value = 0;
-
+            RedShiftVal.Text = RedChange.ToString();
+            GreenShiftVal.Text = GreenChange.ToString();
+            BlueShiftVal.Text = BlueChange.ToString();
         }
 
         

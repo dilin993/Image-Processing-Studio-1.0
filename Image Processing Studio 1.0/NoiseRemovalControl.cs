@@ -13,7 +13,7 @@ namespace Image_Processing_Studio_1._0
     public partial class NoiseRemovalControl : UserControl
     {
         private const double MIN_SIGMA = 0.0;
-        private const double MAX_SIGMA = 21.0;
+        private const double MAX_SIGMA = 5.0;
         private const double DEFAULT_SIGMA = 3.0;
         private const float MIN_H = 0.0f;
         private const float MAX_H = 10.0f;
@@ -44,21 +44,22 @@ namespace Image_Processing_Studio_1._0
             if(comboBox1.SelectedIndex==0)
             {
                 tbSigma.Minimum = 0;
-                tbSigma.Maximum = 100;
+                tbSigma.Maximum = 500;
                 tbAmount.Visible = true;
                 lbAmount.Visible = true;
                 lbAmountTitle.Visible = true;
                 lbSigmaTitle.Text = "sigma = ";
                 lbAmountTitle.Text = "ksize = ";
                 tbAmount.Minimum = 0;
-                tbAmount.Maximum = 10;
+                tbAmount.Maximum = 16;
                 tbSigma.Value = (int)Math.Round((DEFAULT_SIGMA - MIN_SIGMA) * (tbSigma.Maximum - tbSigma.Minimum) /
                (tbSigma.TickFrequency * (MAX_SIGMA - MIN_SIGMA)));
                 sigma = tbSigma.Value * tbSigma.TickFrequency *
                     (MAX_SIGMA - MIN_SIGMA) / (tbSigma.Maximum - tbSigma.Minimum) + MIN_SIGMA; ;
                 lbSigma.Text = sigma.ToString();
 
-                kSize = 2 * tbAmount.Value + 1;
+                kSize = 2 * (int)Math.Round(3.0*sigma) + 1;
+                tbAmount.Value = (kSize-1)/2;
                 lbAmount.Text = kSize.ToString();
             }
             else if(comboBox1.SelectedIndex==1)
@@ -75,7 +76,7 @@ namespace Image_Processing_Studio_1._0
             else if(comboBox1.SelectedIndex==2)
             {
                 tbSigma.Minimum = 0;
-                tbSigma.Maximum = 100;
+                tbSigma.Maximum = 500;
                 tbAmount.Visible = true;
                 lbAmount.Visible = true;
                 lbAmountTitle.Visible = true;
@@ -111,7 +112,9 @@ namespace Image_Processing_Studio_1._0
                     (MAX_SIGMA - MIN_SIGMA) / (tbSigma.Maximum - tbSigma.Minimum) + MIN_SIGMA; ;
                 lbSigma.Text = sigma.ToString();
 
-                kSize = 2 * tbAmount.Value + 1;
+                
+                kSize = 2 * (int)Math.Round(3.0 * sigma) + 1;
+                tbAmount.Value = (kSize - 1) / 2;
                 lbAmount.Text = kSize.ToString();
             }
             else if (comboBox1.SelectedIndex == 1)
