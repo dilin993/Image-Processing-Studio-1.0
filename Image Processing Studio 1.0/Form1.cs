@@ -35,6 +35,7 @@ namespace Image_Processing_Studio_1._0
         Vignette vignette;
         ColorTemperatureControl colorTempControl;
         Exposure ExposureControl;
+        Contrast ContrastControl;
 
         public Form1()
         {
@@ -72,6 +73,9 @@ namespace Image_Processing_Studio_1._0
             ExposureControl.Dock = DockStyle.Top;
             ExposureControl.button1_Clicked += onProcessingApplyClicked;
 
+            ContrastControl = new Contrast();
+            ContrastControl.Dock = DockStyle.Top;
+            ContrastControl.button1_Clicked += onProcessingApplyClicked;
         }
 
         public string GetImageFilter()
@@ -236,6 +240,7 @@ namespace Image_Processing_Studio_1._0
                 btnVignette.Enabled = false;
                 btnColorTemp.Enabled = false;
                 btnExposure.Enabled = false;
+                btnContrast.Enabled = false;
             }
             else
             {
@@ -261,6 +266,7 @@ namespace Image_Processing_Studio_1._0
                 btnVignette.Enabled = true;
                 btnColorTemp.Enabled = true;
                 btnExposure.Enabled = true;
+                btnContrast.Enabled = true;
                 if (imgList[curIndex].History.Count > 0)
                     btnUndo.Enabled = true;
                 else
@@ -460,6 +466,12 @@ namespace Image_Processing_Studio_1._0
         {
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(ExposureControl);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(ContrastControl);
         }
     }
 }

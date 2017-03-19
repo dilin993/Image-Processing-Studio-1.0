@@ -8,54 +8,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Image_Processing_Studio_1._0
 {
-    public partial class Exposure : UserControl
+    public partial class Contrast : UserControl
     {
         public event EventHandler button1_Clicked;
-        double MAX_AMOUNT = 2;
-        double MIN_AMOUNT = -2;
-        double EV;
-
-        public Exposure()
+        double MAX_AMOUNT = 50;
+        double MIN_AMOUNT = -50;
+        double cont1;
+        double cont2;
+        public Contrast()
         {
             InitializeComponent();
         }
-                 
 
-        private void Exposure_Load(object sender, EventArgs e)
-        {
-            //evAuto = 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void Contrast_Load(object sender, EventArgs e)
         {
 
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            EV = trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum);
-
+            cont1 = trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int EV1 = (int)EV;
+            double contrast1 = 1;
+            double contrast2 = cont1;
             if (button1_Clicked != null)
             {
-                string[] parameters = {ImageProcessingTypes.ExposureAdjusting,
-                EV1.ToString()};
+                string[] parameters = {ImageProcessingTypes.ContrastAdjusting,
+                contrast1.ToString(), contrast2.ToString()};
                 this.button1_Clicked(this,
                     new ImageProcessingEventArgs(parameters));
             }
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

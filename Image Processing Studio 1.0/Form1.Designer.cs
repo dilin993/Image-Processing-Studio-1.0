@@ -52,10 +52,11 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
             this.btnColorTemp = new System.Windows.Forms.Button();
+            this.btnExposure = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnExposure = new System.Windows.Forms.Button();
+            this.btnContrast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,7 +95,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(901, 538);
+            this.splitContainer1.Size = new System.Drawing.Size(941, 538);
             this.splitContainer1.SplitterDistance = 457;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -114,8 +115,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.operationTab);
-            this.splitContainer2.Size = new System.Drawing.Size(901, 457);
-            this.splitContainer2.SplitterDistance = 591;
+            this.splitContainer2.Size = new System.Drawing.Size(941, 457);
+            this.splitContainer2.SplitterDistance = 631;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -135,7 +136,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel3);
-            this.splitContainer3.Size = new System.Drawing.Size(589, 455);
+            this.splitContainer3.Size = new System.Drawing.Size(629, 455);
             this.splitContainer3.SplitterDistance = 404;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -144,7 +145,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(589, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(629, 404);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -185,7 +186,7 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnUndo);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(389, 0);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(429, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 47);
@@ -246,10 +247,11 @@
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
             this.flowLayoutPanel1.Controls.Add(this.btnExposure);
+            this.flowLayoutPanel1.Controls.Add(this.btnContrast);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(899, 75);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(939, 75);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnOpen
@@ -343,7 +345,7 @@
             this.btnColorAdjust.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnColorAdjust.Location = new System.Drawing.Point(473, 3);
             this.btnColorAdjust.Name = "btnColorAdjust";
-            this.btnColorAdjust.Size = new System.Drawing.Size(82, 69);
+            this.btnColorAdjust.Size = new System.Drawing.Size(75, 69);
             this.btnColorAdjust.TabIndex = 6;
             this.btnColorAdjust.Text = "Color";
             this.btnColorAdjust.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -355,7 +357,7 @@
             this.btnCrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrop.Image = ((System.Drawing.Image)(resources.GetObject("btnCrop.Image")));
             this.btnCrop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCrop.Location = new System.Drawing.Point(561, 3);
+            this.btnCrop.Location = new System.Drawing.Point(554, 3);
             this.btnCrop.Name = "btnCrop";
             this.btnCrop.Size = new System.Drawing.Size(70, 70);
             this.btnCrop.TabIndex = 4;
@@ -369,9 +371,9 @@
             this.btnVignette.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVignette.Image = ((System.Drawing.Image)(resources.GetObject("btnVignette.Image")));
             this.btnVignette.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVignette.Location = new System.Drawing.Point(637, 3);
+            this.btnVignette.Location = new System.Drawing.Point(630, 3);
             this.btnVignette.Name = "btnVignette";
-            this.btnVignette.Size = new System.Drawing.Size(82, 69);
+            this.btnVignette.Size = new System.Drawing.Size(72, 69);
             this.btnVignette.TabIndex = 7;
             this.btnVignette.Text = "Vignette";
             this.btnVignette.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -383,14 +385,29 @@
             this.btnColorTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnColorTemp.Image = ((System.Drawing.Image)(resources.GetObject("btnColorTemp.Image")));
             this.btnColorTemp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnColorTemp.Location = new System.Drawing.Point(725, 3);
+            this.btnColorTemp.Location = new System.Drawing.Point(708, 3);
             this.btnColorTemp.Name = "btnColorTemp";
-            this.btnColorTemp.Size = new System.Drawing.Size(82, 69);
+            this.btnColorTemp.Size = new System.Drawing.Size(70, 69);
             this.btnColorTemp.TabIndex = 8;
             this.btnColorTemp.Text = "Temp";
             this.btnColorTemp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
+            // 
+            // btnExposure
+            // 
+            this.btnExposure.AccessibleName = "btnExposure";
+            this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnExposure.Image = ((System.Drawing.Image)(resources.GetObject("btnExposure.Image")));
+            this.btnExposure.Location = new System.Drawing.Point(784, 3);
+            this.btnExposure.Name = "btnExposure";
+            this.btnExposure.Size = new System.Drawing.Size(75, 69);
+            this.btnExposure.TabIndex = 9;
+            this.btnExposure.Text = "Exposure";
+            this.btnExposure.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExposure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExposure.UseVisualStyleBackColor = false;
+            this.btnExposure.Click += new System.EventHandler(this.button1_Click);
             // 
             // openFileDialog1
             // 
@@ -401,26 +418,25 @@
             // 
             this.saveFileDialog1.Title = "Export Image";
             // 
-            // btnExposure
+            // btnContrast
             // 
-            this.btnExposure.AccessibleName = "btnExposure";
-            this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btnExposure.Image = ((System.Drawing.Image)(resources.GetObject("btnExposure.Image")));
-            this.btnExposure.Location = new System.Drawing.Point(813, 3);
-            this.btnExposure.Name = "btnExposure";
-            this.btnExposure.Size = new System.Drawing.Size(75, 69);
-            this.btnExposure.TabIndex = 9;
-            this.btnExposure.Text = "Exposure";
-            this.btnExposure.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExposure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExposure.UseVisualStyleBackColor = false;
-            this.btnExposure.Click += new System.EventHandler(this.button1_Click);
+            this.btnContrast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnContrast.Image = ((System.Drawing.Image)(resources.GetObject("btnContrast.Image")));
+            this.btnContrast.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnContrast.Location = new System.Drawing.Point(865, 3);
+            this.btnContrast.Name = "btnContrast";
+            this.btnContrast.Size = new System.Drawing.Size(71, 68);
+            this.btnContrast.TabIndex = 10;
+            this.btnContrast.Text = "Contrast";
+            this.btnContrast.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnContrast.UseVisualStyleBackColor = true;
+            this.btnContrast.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 538);
+            this.ClientSize = new System.Drawing.Size(941, 538);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(917, 577);
@@ -479,6 +495,7 @@
         private System.Windows.Forms.Button btnColorTemp;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnExposure;
+        private System.Windows.Forms.Button btnContrast;
     }
 }
 

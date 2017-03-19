@@ -26,6 +26,7 @@ namespace Image_Processing_Studio_1._0
         public const string Cropping = "cropping";
         public const string ColorTemperatureAdjusting = "color temperature adjusting";
         public const string ExposureAdjusting = "exposure adjusting";
+        public const string ContrastAdjusting = "contrast adjusting";
 
     }
 
@@ -308,30 +309,29 @@ namespace Image_Processing_Studio_1._0
 
         public static UMat getExposureCorrected(ref UMat img, double ev)
         {
-            /// <summary>
-            /// Apply sharpening to the given UMat.
-            /// </summary>
-            /// <param name="img">The src UMat.</param>
-            /// <param name="ev">ev is the exposure value of the image.</param>
-            /// <returns>
-            /// Exposure corrected UMat image.
-            /// </returns>
-            /// <remarks>
-            /// Used for image exposure correction.
-            /// </remarks>
-            /// 
-
-
             UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
             UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
             img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
             //outImg = (UMat)ev*dblImg;
-            CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
+            CvInvoke.AddWeighted(dblImg, ev, dblImg, 0, 0, outImg);
+            //CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
             dblImg.Dispose();
             img.Dispose();
             return outImg;
         }
 
+        public static UMat getContrastAdjusted(ref UMat img, double cont1, double cont2)
+        {
+            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            //outImg = (UMat)ev*dblImg;
+            CvInvoke.AddWeighted(dblImg, cont1, dblImg, 0, cont2, outImg);
+            //CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
+            dblImg.Dispose();
+            img.Dispose();
+            return outImg;
+        }
 
 
         public static UMat getResult(ref UMat img, string[] parameters)
@@ -386,9 +386,12 @@ namespace Image_Processing_Studio_1._0
                 case ImageProcessingTypes.ColorTemperatureAdjusting:
                     return getColorTemperatureAdjusted(ref img, int.Parse(parameters[1]),
                         int.Parse(parameters[2]), int.Parse(parameters[3]));
+
                 case ImageProcessingTypes.ExposureAdjusting:
                     return getExposureCorrected(ref img, double.Parse(parameters[1]));
 
+                case ImageProcessingTypes.ContrastAdjusting:
+                    return getContrastAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]));
                 default:
                     return img;
             }

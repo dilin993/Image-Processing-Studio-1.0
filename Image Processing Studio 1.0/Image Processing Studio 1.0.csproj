@@ -121,6 +121,12 @@
     <Compile Include="ColorTemperatureControl.Designer.cs">
       <DependentUpon>ColorTemperatureControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contrast.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contrast.Designer.cs">
+      <DependentUpon>Contrast.cs</DependentUpon>
+    </Compile>
     <Compile Include="EXIF_view.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ColorTemperatureControl.resx">
       <DependentUpon>ColorTemperatureControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contrast.resx">
+      <DependentUpon>Contrast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EXIF_view.resx">
       <DependentUpon>EXIF_view.cs</DependentUpon>
