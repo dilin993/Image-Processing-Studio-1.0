@@ -25,9 +25,9 @@ namespace Image_Processing_Studio_1._0
         public const string Vignette = "vignette";
         public const string Cropping = "cropping";
         public const string ColorTemperatureAdjusting = "color temperature adjusting";
+        public const string HighlightShadowAdjusting = "highlight shadow adjusting";
         public const string ExposureAdjusting = "exposure adjusting";
         public const string ContrastAdjusting = "contrast adjusting";
-
     }
 
     class ImageProcessor
@@ -133,10 +133,8 @@ namespace Image_Processing_Studio_1._0
             outImg = img.ToImage<Hsv, double>();
             var colors = new VectorOfUMat(3);
             CvInvoke.Split(outImg, colors);
-            double shift = (1+amount) >= 0.0 ? 1+amount : 0;
-            CvInvoke.AddWeighted(colors[0], shift, colors[0], 0,0, colors[0]);
-            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);
-            CvInvoke.AddWeighted(colors[2], shift, colors[2], 0, 0, colors[2]);
+            double shift = (1+amount) >= 0.0 ? 1+amount : 0;            
+            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);           
             CvInvoke.Merge(colors, dblImg);
             return dblImg;
             
@@ -294,9 +292,104 @@ namespace Image_Processing_Studio_1._0
             shift = (1 + blueshift) > 0 ? (1 + blueshift) : 0;
             CvInvoke.AddWeighted(colors[0], shift, colors[0], 0, 0, colors[0]);
             CvInvoke.Merge(colors, dblImg);
+            img.Dispose();
             return dblImg;
 
 
+        }
+
+        public static UMat getHightlightShadowAdjusted(ref UMat img,double gamma,double highlights, double shadows)
+        {
+            Image<Bgr, Byte> outImg = img.ToImage<Bgr, Byte>();
+
+            if (highlights != 1.0)
+            {
+                Image<Gray, Byte> gray = outImg.Convert<Gray, Byte>();
+                int[] GammaMap = new int[256];
+                for (int i = 0; i < 256; i++)
+                {
+                    GammaMap[i] = (byte)Math.Min(255, (int)((255 * Math.Pow(i / 255.0, 1.0 / highlights)) + 0.5));
+                }
+                for (int i = 0; i < outImg.Height; i++)
+                {
+                    for (int j = 0; j < outImg.Width; j++)
+                    {
+                        if (gray[i, j].Intensity >= 150)
+                        {
+                            int redColor = (int)outImg[i, j].Red;
+                            int greenColor = (int)outImg[i, j].Green;
+                            int blueColor = (int)outImg[i, j].Blue;
+
+                            redColor = GammaMap[redColor];
+                            greenColor = GammaMap[greenColor];
+                            blueColor = GammaMap[blueColor];
+
+                            outImg[i, j] = new Bgr(blueColor, greenColor, redColor);
+                        }
+                        
+                    }
+                }
+            }
+
+            if (gamma != 1.0)
+            {
+                
+                int[] GammaMap = new int[256];
+                for (int i = 0; i < 256; i++)
+                {
+                GammaMap[i] = (byte)Math.Min(255, (int)((255 * Math.Pow(i / 255.0, 1.0 / gamma)) + 0.5));
+                }
+                for (int i = 0; i < outImg.Height; i++)
+                {
+                    for (int j = 0; j < outImg.Width; j++)
+                    {
+
+                        int redColor = (int)outImg[i, j].Red;
+                        int greenColor = (int)outImg[i, j].Green;
+                        int blueColor = (int)outImg[i, j].Blue;
+
+                        redColor = GammaMap[redColor];
+                        greenColor = GammaMap[greenColor];
+                        blueColor = GammaMap[blueColor];
+
+                        outImg[i, j] = new Bgr(blueColor, greenColor, redColor);
+                    }
+                }
+                    
+            }
+
+            
+
+
+            if (shadows != 1.0)
+            {
+                Image<Gray, Byte> gray = outImg.Convert<Gray, Byte>();
+                int[] GammaMap = new int[256];
+                for (int i = 0; i < 256; i++)
+                {
+                    GammaMap[i] = (byte)Math.Min(255, (int)((255 * Math.Pow(i / 255.0, 1.0 / shadows)) + 0.5));
+                }
+                for (int i = 0; i < outImg.Height; i++)
+                {
+                    for (int j = 0; j < outImg.Width; j++)
+                    {
+                        if (gray[i, j].Intensity <= 100){ 
+
+                            int redColor = (int)outImg[i, j].Red;
+                            int greenColor = (int)outImg[i, j].Green;
+                            int blueColor = (int)outImg[i, j].Blue;
+
+                            redColor = GammaMap[redColor];
+                            greenColor = GammaMap[greenColor];
+                            blueColor = GammaMap[blueColor];
+
+                            outImg[i, j] = new Bgr(blueColor, greenColor, redColor);
+                        }
+                    }
+                }
+            }
+            img.Dispose();
+            return outImg.ToUMat();
         }
 
         public static UMat getCropped(ref UMat img, int x, int y,int width, int height)
@@ -386,12 +479,15 @@ namespace Image_Processing_Studio_1._0
                 case ImageProcessingTypes.ColorTemperatureAdjusting:
                     return getColorTemperatureAdjusted(ref img, int.Parse(parameters[1]),
                         int.Parse(parameters[2]), int.Parse(parameters[3]));
-
+                case ImageProcessingTypes.HighlightShadowAdjusting:
+                    return getHightlightShadowAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]), 
+                        double.Parse(parameters[3]));
                 case ImageProcessingTypes.ExposureAdjusting:
                     return getExposureCorrected(ref img, double.Parse(parameters[1]));
 
                 case ImageProcessingTypes.ContrastAdjusting:
                     return getContrastAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]));
+
                 default:
                     return img;
             }

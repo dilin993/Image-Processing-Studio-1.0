@@ -52,6 +52,7 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
             this.btnColorTemp = new System.Windows.Forms.Button();
+            this.btnCorrection = new System.Windows.Forms.Button();
             this.btnExposure = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -216,6 +217,10 @@
             // operationTab.Panel1
             // 
             this.operationTab.Panel1.Controls.Add(this.zedGraphControl1);
+            // 
+            // operationTab.Panel2
+            // 
+            this.operationTab.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.operationTab.Size = new System.Drawing.Size(304, 455);
             this.operationTab.SplitterDistance = 195;
             this.operationTab.TabIndex = 0;
@@ -246,6 +251,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
+            this.flowLayoutPanel1.Controls.Add(this.btnCorrection);
             this.flowLayoutPanel1.Controls.Add(this.btnExposure);
             this.flowLayoutPanel1.Controls.Add(this.btnContrast);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -394,7 +400,21 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
-            // btnExposure
+            // btnCorrection
+            // 
+            this.btnCorrection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCorrection.Image = ((System.Drawing.Image)(resources.GetObject("btnCorrection.Image")));
+            this.btnCorrection.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCorrection.Location = new System.Drawing.Point(813, 3);
+            this.btnCorrection.Name = "btnCorrection";
+            this.btnCorrection.Size = new System.Drawing.Size(75, 69);
+            this.btnCorrection.TabIndex = 9;
+            this.btnCorrection.Text = "Hightlights\r\nShadows";
+            this.btnCorrection.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCorrection.UseVisualStyleBackColor = true;
+            this.btnCorrection.Click += new System.EventHandler(this.btnCorrection_Click);
+            //
+             // btnExposure
             // 
             this.btnExposure.AccessibleName = "btnExposure";
             this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -409,6 +429,7 @@
             this.btnExposure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExposure.UseVisualStyleBackColor = false;
             this.btnExposure.Click += new System.EventHandler(this.button1_Click);
+
             // 
             // openFileDialog1
             // 
@@ -495,6 +516,7 @@
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnColorTemp;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnCorrection;
         private System.Windows.Forms.Button btnExposure;
         private System.Windows.Forms.Button btnContrast;
     }

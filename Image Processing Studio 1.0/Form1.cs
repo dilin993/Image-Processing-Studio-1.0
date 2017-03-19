@@ -34,6 +34,7 @@ namespace Image_Processing_Studio_1._0
         ColorAdjustment ColorControl;
         Vignette vignette;
         ColorTemperatureControl colorTempControl;
+        HightlightShadows HighlightShadowsControl;
         Exposure ExposureControl;
         Contrast ContrastControl;
 
@@ -68,7 +69,12 @@ namespace Image_Processing_Studio_1._0
             colorTempControl = new ColorTemperatureControl();
             colorTempControl.Dock = DockStyle.Top;
             colorTempControl.ApplyClicked += onProcessingApplyClicked;
-
+            
+            HighlightShadowsControl = new HightlightShadows();
+            HighlightShadowsControl.Dock = DockStyle.Top;
+            HighlightShadowsControl.ApplyClicked += onProcessingApplyClicked;
+            
+            
             ExposureControl = new Exposure();
             ExposureControl.Dock = DockStyle.Top;
             ExposureControl.button1_Clicked += onProcessingApplyClicked;
@@ -239,6 +245,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = false;
                 btnVignette.Enabled = false;
                 btnColorTemp.Enabled = false;
+                btnCorrection.Enabled = false;
                 btnExposure.Enabled = false;
                 btnContrast.Enabled = false;
             }
@@ -265,6 +272,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = true;
                 btnVignette.Enabled = true;
                 btnColorTemp.Enabled = true;
+                btnCorrection.Enabled = true;
                 btnExposure.Enabled = true;
                 btnContrast.Enabled = true;
                 if (imgList[curIndex].History.Count > 0)
@@ -337,7 +345,7 @@ namespace Image_Processing_Studio_1._0
             double gray_max = m_gray.Max();
 
             double[] m_red = new double[256];
-            Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[2] }, false, null);
             Hist.CopyTo(m_red);
             double red_max = m_red.Max();
 
@@ -347,7 +355,7 @@ namespace Image_Processing_Studio_1._0
             double green_max = m_green.Max();
 
             double[] m_blue = new double[256];
-            Hist.Calculate(new Image<Gray, byte>[] { img_ref[2] }, false, null);
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
             Hist.CopyTo(m_blue);
             double blue_max = m_blue.Max();
 
@@ -460,6 +468,12 @@ namespace Image_Processing_Studio_1._0
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        
+        private void btnCorrection_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(HighlightShadowsControl);
         }
 
         private void button1_Click(object sender, EventArgs e)
