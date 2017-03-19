@@ -28,7 +28,10 @@ namespace Image_Processing_Studio_1._0
 
         private void Exposure_Load(object sender, EventArgs e)
         {
-            //evAuto = 
+
+            EV = Math.Pow(2.0, (trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum)));
+            exp = (trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum));
+            expVal.Text = exp.ToString();
         }
 
         private void label1_Click(object sender, EventArgs e)

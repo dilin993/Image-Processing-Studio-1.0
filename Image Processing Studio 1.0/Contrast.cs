@@ -24,7 +24,8 @@ namespace Image_Processing_Studio_1._0
 
         private void Contrast_Load(object sender, EventArgs e)
         {
-
+            cont1 = trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum);
+            contVal.Text = cont1.ToString();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
