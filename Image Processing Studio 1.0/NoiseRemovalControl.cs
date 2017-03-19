@@ -187,5 +187,10 @@ namespace Image_Processing_Studio_1._0
                    new ImageProcessingEventArgs(parameters));
 
         }
+
+        private void lbSigma_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
