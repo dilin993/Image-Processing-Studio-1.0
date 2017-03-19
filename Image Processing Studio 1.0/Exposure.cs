@@ -36,13 +36,13 @@ namespace Image_Processing_Studio_1._0
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            EV = trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum);
+            EV = Math.Pow(2.0,(trackBar1.Value * (MAX_AMOUNT - MIN_AMOUNT) / (trackBar1.Maximum - trackBar1.Minimum)));
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int EV1 = (int)EV;
+            double EV1 = EV;
             if (button1_Clicked != null)
             {
                 string[] parameters = {ImageProcessingTypes.ExposureAdjusting,
