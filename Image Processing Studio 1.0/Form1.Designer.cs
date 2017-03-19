@@ -398,6 +398,7 @@
             // 
             this.btnExposure.AccessibleName = "btnExposure";
             this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnExposure.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExposure.Image = ((System.Drawing.Image)(resources.GetObject("btnExposure.Image")));
             this.btnExposure.Location = new System.Drawing.Point(784, 3);
             this.btnExposure.Name = "btnExposure";
@@ -420,7 +421,7 @@
             // 
             // btnContrast
             // 
-            this.btnContrast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnContrast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContrast.Image = ((System.Drawing.Image)(resources.GetObject("btnContrast.Image")));
             this.btnContrast.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnContrast.Location = new System.Drawing.Point(865, 3);

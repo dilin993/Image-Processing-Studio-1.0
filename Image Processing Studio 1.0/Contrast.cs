@@ -34,7 +34,7 @@ namespace Image_Processing_Studio_1._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double contrast1 = 1;
+            double contrast1 = 1.2;
             double contrast2 = cont1;
             if (button1_Clicked != null)
             {

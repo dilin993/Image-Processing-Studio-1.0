@@ -326,7 +326,7 @@ namespace Image_Processing_Studio_1._0
             UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
             img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
             //outImg = (UMat)ev*dblImg;
-            CvInvoke.AddWeighted(dblImg, cont1, dblImg, 0, cont2, outImg);
+            CvInvoke.AddWeighted(dblImg, cont1, dblImg, 0, cont1*(-128)+cont2+128, outImg);
             //CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
             dblImg.Dispose();
             img.Dispose();

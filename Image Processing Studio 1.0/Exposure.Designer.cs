@@ -31,14 +31,14 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.autoExposure = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(48, 147);
+            this.trackBar1.Location = new System.Drawing.Point(45, 83);
+            this.trackBar1.Maximum = 255;
+            this.trackBar1.Minimum = -255;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(157, 45);
             this.trackBar1.TabIndex = 0;
@@ -47,11 +47,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 131);
+            this.label1.Location = new System.Drawing.Point(80, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Manual Exposure";
+            this.label1.Text = "Exposure";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
@@ -64,31 +64,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // autoExposure
-            // 
-            this.autoExposure.Location = new System.Drawing.Point(83, 79);
-            this.autoExposure.Name = "autoExposure";
-            this.autoExposure.Size = new System.Drawing.Size(86, 25);
-            this.autoExposure.TabIndex = 3;
-            this.autoExposure.Text = "Apply";
-            this.autoExposure.UseVisualStyleBackColor = true;
-            this.autoExposure.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(53, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Automatic Exposure Correction";
-            // 
             // Exposure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.autoExposure);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
@@ -106,7 +85,5 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button autoExposure;
-        private System.Windows.Forms.Label label2;
     }
 }
