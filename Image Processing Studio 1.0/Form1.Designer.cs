@@ -52,10 +52,10 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
             this.btnColorTemp = new System.Windows.Forms.Button();
+            this.btnCorrection = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnCorrection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -396,18 +396,11 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Title = "Export Image";
-            // 
             // btnCorrection
             // 
             this.btnCorrection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCorrection.Image = ((System.Drawing.Image)(resources.GetObject("btnCorrection.Image")));
+            this.btnCorrection.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCorrection.Location = new System.Drawing.Point(813, 3);
             this.btnCorrection.Name = "btnCorrection";
             this.btnCorrection.Size = new System.Drawing.Size(75, 69);
@@ -416,6 +409,15 @@
             this.btnCorrection.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCorrection.UseVisualStyleBackColor = true;
             this.btnCorrection.Click += new System.EventHandler(this.btnCorrection_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Title = "Export Image";
             // 
             // Form1
             // 

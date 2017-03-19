@@ -129,10 +129,8 @@ namespace Image_Processing_Studio_1._0
             outImg = img.ToImage<Hsv, double>();
             var colors = new VectorOfUMat(3);
             CvInvoke.Split(outImg, colors);
-            double shift = (1+amount) >= 0.0 ? 1+amount : 0;
-            CvInvoke.AddWeighted(colors[0], shift, colors[0], 0,0, colors[0]);
-            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);
-            CvInvoke.AddWeighted(colors[2], shift, colors[2], 0, 0, colors[2]);
+            double shift = (1+amount) >= 0.0 ? 1+amount : 0;            
+            CvInvoke.AddWeighted(colors[1], shift, colors[1], 0, 0, colors[1]);           
             CvInvoke.Merge(colors, dblImg);
             return dblImg;
             

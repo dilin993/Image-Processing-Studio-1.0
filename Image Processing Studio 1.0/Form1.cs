@@ -330,7 +330,7 @@ namespace Image_Processing_Studio_1._0
             double gray_max = m_gray.Max();
 
             double[] m_red = new double[256];
-            Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[2] }, false, null);
             Hist.CopyTo(m_red);
             double red_max = m_red.Max();
 
@@ -340,7 +340,7 @@ namespace Image_Processing_Studio_1._0
             double green_max = m_green.Max();
 
             double[] m_blue = new double[256];
-            Hist.Calculate(new Image<Gray, byte>[] { img_ref[2] }, false, null);
+            Hist.Calculate(new Image<Gray, byte>[] { img_ref[0] }, false, null);
             Hist.CopyTo(m_blue);
             double blue_max = m_blue.Max();
 
