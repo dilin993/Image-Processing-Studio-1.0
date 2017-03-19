@@ -26,6 +26,8 @@ namespace Image_Processing_Studio_1._0
         public const string Cropping = "cropping";
         public const string ColorTemperatureAdjusting = "color temperature adjusting";
         public const string HighlightShadowAdjusting = "highlight shadow adjusting";
+        public const string ExposureAdjusting = "exposure adjusting";
+        public const string ContrastAdjusting = "contrast adjusting";
     }
 
     class ImageProcessor
@@ -115,10 +117,12 @@ namespace Image_Processing_Studio_1._0
             /// <remarks>
             /// Used for image filtering using N1 mean filtering.
             /// </remarks>
-
-            UMat outImg = new UMat(img.Rows, img.Cols, img.Depth, img.NumberOfChannels);
-            CvInvoke.FastNlMeansDenoisingColored(img, outImg, h, hcolor);
+            UMat tmp = new UMat();
+            img.ConvertTo(tmp, DepthType.Cv8U);
+            UMat outImg = new UMat(tmp.Rows, tmp.Cols, tmp.Depth, tmp.NumberOfChannels);
+            CvInvoke.FastNlMeansDenoisingColored(tmp, outImg, h, hcolor);
             img.Dispose();
+            tmp.Dispose();
             return outImg;
         }
 
@@ -224,9 +228,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)i;
-                        double newgreen = green - (double)radi + (double)i;
-                        double newblue = blue - (double)radi + (double)i;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)i;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)i;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)i;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -236,9 +240,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)j;
-                        double newgreen = green - (double)radi + (double)j;
-                        double newblue = blue - (double)radi + (double)j;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)j;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)j;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)j;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -249,9 +253,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)dblImg.Rows - (double)i;
-                        double newgreen = green - (double)radi + (double)dblImg.Rows - (double)i;
-                        double newblue = blue - (double)radi + (double)dblImg.Rows - (double)i;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -262,9 +266,9 @@ namespace Image_Processing_Studio_1._0
                         double red = CurrentColor.Red;
                         double green = CurrentColor.Green;
                         double blue = CurrentColor.Blue;
-                        double newred = red - (double)radi + (double)dblImg.Cols - (double)j;
-                        double newgreen = green - (double)radi + (double)dblImg.Cols - (double)j;
-                        double newblue = blue - (double)radi + (double)dblImg.Cols - (double)j;
+                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
                         Bgr SetColor = new Bgr(newblue, newgreen, newred);
                         a[i, j] = SetColor;
                     }
@@ -396,6 +400,32 @@ namespace Image_Processing_Studio_1._0
         }
 
 
+        public static UMat getExposureCorrected(ref UMat img, double ev)
+        {
+            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            //outImg = (UMat)ev*dblImg;
+            CvInvoke.AddWeighted(dblImg, ev, dblImg, 0, 0, outImg);
+            //CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
+            dblImg.Dispose();
+            img.Dispose();
+            return outImg;
+        }
+
+        public static UMat getContrastAdjusted(ref UMat img, double cont1, double cont2)
+        {
+            UMat dblImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            UMat outImg = new UMat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            //outImg = (UMat)ev*dblImg;
+            CvInvoke.AddWeighted(dblImg, cont1, dblImg, 0, cont1*(-128)+cont2+128, outImg);
+            //CvInvoke.cvConvertScale(dblImg, outImg, ev,0);
+            dblImg.Dispose();
+            img.Dispose();
+            return outImg;
+        }
+
 
         public static UMat getResult(ref UMat img, string[] parameters)
         {
@@ -449,10 +479,14 @@ namespace Image_Processing_Studio_1._0
                 case ImageProcessingTypes.ColorTemperatureAdjusting:
                     return getColorTemperatureAdjusted(ref img, int.Parse(parameters[1]),
                         int.Parse(parameters[2]), int.Parse(parameters[3]));
-
                 case ImageProcessingTypes.HighlightShadowAdjusting:
                     return getHightlightShadowAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]), 
                         double.Parse(parameters[3]));
+                case ImageProcessingTypes.ExposureAdjusting:
+                    return getExposureCorrected(ref img, double.Parse(parameters[1]));
+
+                case ImageProcessingTypes.ContrastAdjusting:
+                    return getContrastAdjusted(ref img, double.Parse(parameters[1]), double.Parse(parameters[2]));
 
                 default:
                     return img;

@@ -29,6 +29,7 @@ namespace Image_Processing_Studio_1._0
         {
             InitializeComponent();
             img = Form1.img;
+            Aspectratio_matcher(img);
             redrawImg();
         }
 
@@ -66,8 +67,7 @@ namespace Image_Processing_Studio_1._0
             if (img == null) return;
             try
             {
-                displayImage = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());//img.ToImage<Bgr, byte>().ToBitmap();
-
+                displayImage = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
                 updateDisplay();
             }
             catch (Exception exc)
@@ -80,7 +80,6 @@ namespace Image_Processing_Studio_1._0
         {
             updateDisplay();
         }
-
         
 
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
@@ -137,7 +136,7 @@ namespace Image_Processing_Studio_1._0
         }
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         #region EVENTs PICTURE BOX
-        //private UMat imgEntrada;//Image<Bgr, byte> imgEntrada;
+        
         private Point RectStartPoint;
         private Rectangle Rect = new Rectangle();
         private Rectangle RealImageRect = new Rectangle();
@@ -156,7 +155,7 @@ namespace Image_Processing_Studio_1._0
             #region SETS COORDINATES AT INPUT IMAGE BOX
             int X0, Y0;
             ConvertCoordinates(pictureBox1, out X0, out Y0, e.X, e.Y);
-            //labelPostionXY.Text = "Last Position: X:" + X0 + "  Y:" + Y0;
+            labelPostionXY.Text = "Last Position: X:" + X0 + "  Y:" + Y0;
 
             //Coordinates at input picture box
             if (e.Button != MouseButtons.Left)
@@ -182,8 +181,6 @@ namespace Image_Processing_Studio_1._0
                 Math.Abs(X0 - X1),
                 Math.Abs(Y0 - Y1));
             #endregion
-
-            //imgEntrada = new Image<Bgr, byte>(img.ToImage<Bgr, byte>().ToBitmap());
             
 
             ((PictureBox)sender).Invalidate();
@@ -199,8 +196,7 @@ namespace Image_Processing_Studio_1._0
                 {
                     //Select a ROI
                     e.Graphics.SetClip(Rect, System.Drawing.Drawing2D.CombineMode.Exclude);
-                    e.Graphics.FillRectangle(selectionBrush, new Rectangle(0, 0, ((PictureBox)sender).Width, ((PictureBox)sender).Height));
-                    //e.Graphics.FillRectangle(selectionBrush, Rect);
+                    e.Graphics.FillRectangle(selectionBrush, new Rectangle(0, 0, ((PictureBox)sender).Width, ((PictureBox)sender).Height));                    
                 }
             }
         }
@@ -210,11 +206,17 @@ namespace Image_Processing_Studio_1._0
             //Define ROI
             if (RealImageRect.Width > 0 && RealImageRect.Height > 0)
             {
-                OutImg = new UMat(img, RealImageRect);
-                imageBoxROI.Image = OutImg;
-
+                try
+                {
+                    OutImg = new UMat(img, RealImageRect);
+                    imageBoxROI.Image = OutImg;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Select Within Image dimensions", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
-
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -236,13 +238,9 @@ namespace Image_Processing_Studio_1._0
                 {
                     // Cancel the Closing event from closing the form.
                     e.Cancel = true;
-                    //// Call method to save file...
-                    //SendCroppedImage();
                 }
             }
         }
-
-
 
         private void SendCroppedImage()
         {
@@ -264,6 +262,33 @@ namespace Image_Processing_Studio_1._0
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Aspectratio_matcher(UMat img)
+        {
+            float picBox_Width = (float)pictureBox1.Width;
+            float picBox_Height = (float)pictureBox1.Height;
+
+            float img_Width = img.Cols;
+            float img_Height = img.Rows;
+
+            float img_ratio = img_Height / img_Width;
+            Console.WriteLine(img_ratio);
+            if (img_ratio >= 1.0f)
+            {
+                picBox_Width = picBox_Height / img_ratio;
+                pictureBox1.Width =(int)Math.Ceiling(picBox_Width);
+            }
+            else
+            {
+                picBox_Height = picBox_Width * img_ratio;
+                pictureBox1.Height = (int)Math.Ceiling(picBox_Height); 
+            }
         }
     }
 }
