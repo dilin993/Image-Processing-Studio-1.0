@@ -96,6 +96,7 @@
             this.lbSigma.Size = new System.Drawing.Size(35, 13);
             this.lbSigma.TabIndex = 10;
             this.lbSigma.Text = "label2";
+            this.lbSigma.Click += new System.EventHandler(this.lbSigma_Click);
             // 
             // tbSigma
             // 
