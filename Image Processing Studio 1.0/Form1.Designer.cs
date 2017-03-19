@@ -51,10 +51,11 @@
             this.btnColorAdjust = new System.Windows.Forms.Button();
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
+            this.btnColorTemp = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnColorTemp = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnExposure = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -244,6 +245,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
+            this.flowLayoutPanel1.Controls.Add(this.btnExposure);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -376,11 +378,6 @@
             this.btnVignette.UseVisualStyleBackColor = true;
             this.btnVignette.Click += new System.EventHandler(this.VignetteButton_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Multiselect = true;
-            this.openFileDialog1.Title = "Import image(s)";
-            // 
             // btnColorTemp
             // 
             this.btnColorTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,9 +392,29 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Import image(s)";
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Title = "Export Image";
+            // 
+            // btnExposure
+            // 
+            this.btnExposure.AccessibleName = "btnExposure";
+            this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnExposure.Image = ((System.Drawing.Image)(resources.GetObject("btnExposure.Image")));
+            this.btnExposure.Location = new System.Drawing.Point(813, 3);
+            this.btnExposure.Name = "btnExposure";
+            this.btnExposure.Size = new System.Drawing.Size(75, 69);
+            this.btnExposure.TabIndex = 9;
+            this.btnExposure.Text = "Exposure";
+            this.btnExposure.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExposure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExposure.UseVisualStyleBackColor = false;
+            this.btnExposure.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -461,6 +478,7 @@
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnColorTemp;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnExposure;
     }
 }
 

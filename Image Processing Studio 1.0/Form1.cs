@@ -34,6 +34,7 @@ namespace Image_Processing_Studio_1._0
         ColorAdjustment ColorControl;
         Vignette vignette;
         ColorTemperatureControl colorTempControl;
+        Exposure ExposureControl;
 
         public Form1()
         {
@@ -66,6 +67,10 @@ namespace Image_Processing_Studio_1._0
             colorTempControl = new ColorTemperatureControl();
             colorTempControl.Dock = DockStyle.Top;
             colorTempControl.ApplyClicked += onProcessingApplyClicked;
+
+            ExposureControl = new Exposure();
+            ExposureControl.Dock = DockStyle.Top;
+            ExposureControl.button1_Clicked += onProcessingApplyClicked;
 
         }
 
@@ -230,7 +235,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = false;
                 btnVignette.Enabled = false;
                 btnColorTemp.Enabled = false;
-                
+                btnExposure.Enabled = false;
             }
             else
             {
@@ -255,6 +260,7 @@ namespace Image_Processing_Studio_1._0
                 btnSave.Enabled = true;
                 btnVignette.Enabled = true;
                 btnColorTemp.Enabled = true;
+                btnExposure.Enabled = true;
                 if (imgList[curIndex].History.Count > 0)
                     btnUndo.Enabled = true;
                 else
@@ -448,6 +454,12 @@ namespace Image_Processing_Studio_1._0
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            operationTab.Panel2.Controls.Clear();
+            operationTab.Panel2.Controls.Add(ExposureControl);
         }
     }
 }
