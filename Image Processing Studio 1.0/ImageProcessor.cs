@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using Emgu.CV;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Emgu.CV.CvEnum;
-
 
 namespace Image_Processing_Studio_1._0
 {
@@ -210,74 +210,114 @@ namespace Image_Processing_Studio_1._0
             return outMat;
         }
 
-        public static UMat getVignetteAdjusted(ref UMat img, int radi, int intensity)
+
+        public static void PaintVignette(Graphics g, Rectangle bounds, int radi, int intense)
         {
-            Mat dblImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
-            Mat outImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
-            img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
-            img.ConvertTo(outImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            Rectangle ellipsebounds = bounds;
+            ellipsebounds.Offset(-ellipsebounds.X, -ellipsebounds.Y);
+            int x = ellipsebounds.Width - (int)Math.Round((radi * ellipsebounds.Width)/10.0);
+            int y = ellipsebounds.Height - (int)Math.Round((radi * ellipsebounds.Height)/10.0);
+            ellipsebounds.Inflate(x, y);
 
-            Image<Bgr, Byte> a = outImg.ToImage<Bgr, Byte>();
-            Bgr CurrentColor = new Bgr(0, 0, 0);
-
-            for (int i = 0; i < dblImg.Rows; i++)
+            using (GraphicsPath path = new GraphicsPath())
             {
-                for (int j = 0; j < dblImg.Cols; j++)
+                path.AddEllipse(ellipsebounds);
+                using (PathGradientBrush brush = new PathGradientBrush(path))
                 {
-                    if (i < radi)
-                    {
-                        CurrentColor = a[i, j];
-                        double red = CurrentColor.Red;
-                        double green = CurrentColor.Green;
-                        double blue = CurrentColor.Blue;
-                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)i;
-                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)i;
-                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)i;
-                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
-                        a[i, j] = SetColor;
-                    }
-                    if ( j < radi)
-                    {
-                        CurrentColor = a[i, j];
-                        double red = CurrentColor.Red;
-                        double green = CurrentColor.Green;
-                        double blue = CurrentColor.Blue;
-                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)j;
-                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)j;
-                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)j;
-                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
-                        a[i, j] = SetColor;
-                    }
-
-                    if ( i > dblImg.Rows - radi )
-                    {
-                        CurrentColor = a[i, j];
-                        double red = CurrentColor.Red;
-                        double green = CurrentColor.Green;
-                        double blue = CurrentColor.Blue;
-                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
-                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
-                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
-                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
-                        a[i, j] = SetColor;
-                    }
-
-                    if ( j > dblImg.Cols - radi)
-                    {
-                        CurrentColor = a[i, j];
-                        double red = CurrentColor.Red;
-                        double green = CurrentColor.Green;
-                        double blue = CurrentColor.Blue;
-                        double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
-                        double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
-                        double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
-                        Bgr SetColor = new Bgr(newblue, newgreen, newred);
-                        a[i, j] = SetColor;
-                    }
+                    brush.WrapMode = WrapMode.Tile;
+                    brush.CenterColor = Color.FromArgb(0, 0, 0, 0);
+                    brush.SurroundColors = new Color[] { Color.FromArgb(intense, 0, 0, 0) };
+                    Blend blend = new Blend();
+                    blend.Positions = new float[] { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0F };
+                    blend.Factors = new float[] { 0.0f, 0.5f, 1f, 1f, 1.0f, 1.0f };
+                    brush.Blend = blend;
+                    Region oldClip = g.Clip;
+                    g.Clip = new Region(bounds);
+                    g.FillRectangle(brush, ellipsebounds);
+                    g.Clip = oldClip;
                 }
             }
+        }
 
-            return a.ToUMat();
+        public static UMat getVignetteAdjusted(ref UMat img, int radi, int intensity)
+        {
+            Bitmap temp2 = img.ToImage<Bgr, Byte>().ToBitmap();
+            Bitmap final = new Bitmap(temp2);
+            using (Graphics g = Graphics.FromImage(final))
+            {
+                PaintVignette(g, new Rectangle(0, 0, final.Width, final.Height), radi, intensity);
+
+                var image = new Image<Bgr, Byte>(new Bitmap(final));
+
+                return image.ToUMat();
+            }
+            //Mat dblImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            //Mat outImg = new Mat(img.Rows, img.Cols, Emgu.CV.CvEnum.DepthType.Cv64F, img.NumberOfChannels);
+            //img.ConvertTo(dblImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+            //img.ConvertTo(outImg, Emgu.CV.CvEnum.DepthType.Cv64F);
+
+
+            //Image <Bgr, Byte> a = outImg.ToImage<Bgr, Byte>();
+            //Bgr CurrentColor = new Bgr(0, 0, 0);
+
+            //for (int i = 0; i < dblImg.Rows; i++)
+            //{
+            //    for (int j = 0; j < dblImg.Cols; j++)
+            //    {
+            //        if (i < radi)
+            //        {
+            //            CurrentColor = a[i, j];
+            //            double red = CurrentColor.Red;
+            //            double green = CurrentColor.Green;
+            //            double blue = CurrentColor.Blue;
+            //            double newred = red - (double)intensity * (double)radi + (double)intensity * (double)i;
+            //            double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)i;
+            //            double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)i;
+            //            Bgr SetColor = new Bgr(newblue, newgreen, newred);
+            //            a[i, j] = SetColor;
+            //        }
+            //        if ( j < radi)
+            //        {
+            //            CurrentColor = a[i, j];
+            //            double red = CurrentColor.Red;
+            //            double green = CurrentColor.Green;
+            //            double blue = CurrentColor.Blue;
+            //            double newred = red - (double)intensity * (double)radi + (double)intensity * (double)j;
+            //            double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)j;
+            //            double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)j;
+            //            Bgr SetColor = new Bgr(newblue, newgreen, newred);
+            //            a[i, j] = SetColor;
+            //        }
+
+            //        if ( i > dblImg.Rows - radi )
+            //        {
+            //            CurrentColor = a[i, j];
+            //            double red = CurrentColor.Red;
+            //            double green = CurrentColor.Green;
+            //            double blue = CurrentColor.Blue;
+            //            double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+            //            double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+            //            double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Rows - (double)intensity * (double)i;
+            //            Bgr SetColor = new Bgr(newblue, newgreen, newred);
+            //            a[i, j] = SetColor;
+            //        }
+
+            //        if ( j > dblImg.Cols - radi)
+            //        {
+            //            CurrentColor = a[i, j];
+            //            double red = CurrentColor.Red;
+            //            double green = CurrentColor.Green;
+            //            double blue = CurrentColor.Blue;
+            //            double newred = red - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+            //            double newgreen = green - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+            //            double newblue = blue - (double)intensity * (double)radi + (double)intensity * (double)dblImg.Cols - (double)intensity * (double)j;
+            //            Bgr SetColor = new Bgr(newblue, newgreen, newred);
+            //            a[i, j] = SetColor;
+            //        }
+            //    }
+            //}
+
+            //return a.ToUMat();
         }
 
         public static UMat getColorAdjusted(ref UMat img,double redshift,double greenshift,double blueshift)

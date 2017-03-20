@@ -171,7 +171,7 @@ namespace Image_Processing_Studio_1._0
 
             #region SETS COORDINATES AT REAL IMAGE
             //Coordinates at real image - Create ROI
-            ConvertCoordinates(pictureBox1, out X0, out Y0,RectStartPoint.X, RectStartPoint.Y);
+            ConvertCoordinates(pictureBox1, out X0, out Y0, RectStartPoint.X, RectStartPoint.Y);
             int X1, Y1;
             ConvertCoordinates(pictureBox1, out X1, out Y1, tempEndPoint.X, tempEndPoint.Y);
             RealImageRect.Location = new Point(
@@ -181,7 +181,7 @@ namespace Image_Processing_Studio_1._0
                 Math.Abs(X0 - X1),
                 Math.Abs(Y0 - Y1));
             #endregion
-            
+
 
             ((PictureBox)sender).Invalidate();
         }
