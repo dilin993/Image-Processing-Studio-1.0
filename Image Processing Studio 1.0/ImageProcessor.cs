@@ -211,6 +211,16 @@ namespace Image_Processing_Studio_1._0
 
         public static void PaintVignette(Graphics g, Rectangle bounds, int radi, int intense)
         {
+            int red = 0;
+            int green = 0;
+            int blue = 0;
+            if (intense < 0)
+            {
+                intense = -intense;
+                red = 255;
+                green = 255;
+                blue = 255;
+            }
             Rectangle ellipsebounds = bounds;
             ellipsebounds.Offset(-ellipsebounds.X, -ellipsebounds.Y);
             int x = ellipsebounds.Width - (int)Math.Round((radi * ellipsebounds.Width)/10.0);
@@ -224,7 +234,7 @@ namespace Image_Processing_Studio_1._0
                 {
                     brush.WrapMode = WrapMode.Tile;
                     brush.CenterColor = Color.FromArgb(0, 0, 0, 0);
-                    brush.SurroundColors = new Color[] { Color.FromArgb(intense, 0, 0, 0) };
+                    brush.SurroundColors = new Color[] { Color.FromArgb(intense, red, green, blue) };
                     Blend blend = new Blend();
                     blend.Positions = new float[] { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0F };
                     blend.Factors = new float[] { 0.0f, 0.5f, 1f, 1f, 1.0f, 1.0f };
