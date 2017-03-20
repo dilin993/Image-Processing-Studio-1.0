@@ -52,11 +52,12 @@
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnVignette = new System.Windows.Forms.Button();
             this.btnColorTemp = new System.Windows.Forms.Button();
+            this.btnCorrection = new System.Windows.Forms.Button();
             this.btnExposure = new System.Windows.Forms.Button();
+            this.btnContrast = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnContrast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -95,7 +96,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(941, 538);
+            this.splitContainer1.Size = new System.Drawing.Size(1033, 538);
             this.splitContainer1.SplitterDistance = 457;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -115,8 +116,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.operationTab);
-            this.splitContainer2.Size = new System.Drawing.Size(941, 457);
-            this.splitContainer2.SplitterDistance = 631;
+            this.splitContainer2.Size = new System.Drawing.Size(1033, 457);
+            this.splitContainer2.SplitterDistance = 723;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -136,7 +137,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel3);
-            this.splitContainer3.Size = new System.Drawing.Size(629, 455);
+            this.splitContainer3.Size = new System.Drawing.Size(721, 455);
             this.splitContainer3.SplitterDistance = 404;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -145,7 +146,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(629, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(721, 404);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -186,7 +187,7 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnUndo);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(429, 0);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(521, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 47);
@@ -216,6 +217,10 @@
             // operationTab.Panel1
             // 
             this.operationTab.Panel1.Controls.Add(this.zedGraphControl1);
+            // 
+            // operationTab.Panel2
+            // 
+            this.operationTab.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.operationTab.Size = new System.Drawing.Size(304, 455);
             this.operationTab.SplitterDistance = 195;
             this.operationTab.TabIndex = 0;
@@ -246,12 +251,13 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCrop);
             this.flowLayoutPanel1.Controls.Add(this.btnVignette);
             this.flowLayoutPanel1.Controls.Add(this.btnColorTemp);
+            this.flowLayoutPanel1.Controls.Add(this.btnCorrection);
             this.flowLayoutPanel1.Controls.Add(this.btnExposure);
             this.flowLayoutPanel1.Controls.Add(this.btnContrast);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(939, 75);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1031, 75);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnOpen
@@ -394,13 +400,27 @@
             this.btnColorTemp.UseVisualStyleBackColor = true;
             this.btnColorTemp.Click += new System.EventHandler(this.btnColorTemp_Click);
             // 
+            // btnCorrection
+            // 
+            this.btnCorrection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCorrection.Image = ((System.Drawing.Image)(resources.GetObject("btnCorrection.Image")));
+            this.btnCorrection.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCorrection.Location = new System.Drawing.Point(784, 3);
+            this.btnCorrection.Name = "btnCorrection";
+            this.btnCorrection.Size = new System.Drawing.Size(75, 69);
+            this.btnCorrection.TabIndex = 9;
+            this.btnCorrection.Text = "Hightlights\r\nShadows";
+            this.btnCorrection.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCorrection.UseVisualStyleBackColor = true;
+            this.btnCorrection.Click += new System.EventHandler(this.btnCorrection_Click);
+            // 
             // btnExposure
             // 
             this.btnExposure.AccessibleName = "btnExposure";
             this.btnExposure.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.btnExposure.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExposure.Image = ((System.Drawing.Image)(resources.GetObject("btnExposure.Image")));
-            this.btnExposure.Location = new System.Drawing.Point(784, 3);
+            this.btnExposure.Location = new System.Drawing.Point(865, 3);
             this.btnExposure.Name = "btnExposure";
             this.btnExposure.Size = new System.Drawing.Size(75, 69);
             this.btnExposure.TabIndex = 9;
@@ -409,6 +429,20 @@
             this.btnExposure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExposure.UseVisualStyleBackColor = false;
             this.btnExposure.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnContrast
+            // 
+            this.btnContrast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContrast.Image = ((System.Drawing.Image)(resources.GetObject("btnContrast.Image")));
+            this.btnContrast.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnContrast.Location = new System.Drawing.Point(946, 3);
+            this.btnContrast.Name = "btnContrast";
+            this.btnContrast.Size = new System.Drawing.Size(71, 68);
+            this.btnContrast.TabIndex = 10;
+            this.btnContrast.Text = "Contrast";
+            this.btnContrast.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnContrast.UseVisualStyleBackColor = true;
+            this.btnContrast.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // openFileDialog1
             // 
@@ -419,28 +453,14 @@
             // 
             this.saveFileDialog1.Title = "Export Image";
             // 
-            // btnContrast
-            // 
-            this.btnContrast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnContrast.Image = ((System.Drawing.Image)(resources.GetObject("btnContrast.Image")));
-            this.btnContrast.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnContrast.Location = new System.Drawing.Point(865, 3);
-            this.btnContrast.Name = "btnContrast";
-            this.btnContrast.Size = new System.Drawing.Size(71, 68);
-            this.btnContrast.TabIndex = 10;
-            this.btnContrast.Text = "Contrast";
-            this.btnContrast.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnContrast.UseVisualStyleBackColor = true;
-            this.btnContrast.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 538);
+            this.ClientSize = new System.Drawing.Size(1033, 538);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(917, 577);
+            this.MinimumSize = new System.Drawing.Size(1049, 577);
             this.Name = "Form1";
             this.Text = "Image Processing Studio 1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -495,6 +515,7 @@
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnColorTemp;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnCorrection;
         private System.Windows.Forms.Button btnExposure;
         private System.Windows.Forms.Button btnContrast;
     }
