@@ -58,6 +58,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -185,6 +186,7 @@
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.Controls.Add(this.btnInfo);
             this.flowLayoutPanel3.Controls.Add(this.btnUndo);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(521, 0);
@@ -196,7 +198,7 @@
             // btnUndo
             // 
             this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
-            this.btnUndo.Location = new System.Drawing.Point(157, 3);
+            this.btnUndo.Location = new System.Drawing.Point(111, 3);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnUndo.Size = new System.Drawing.Size(40, 40);
@@ -453,6 +455,18 @@
             // 
             this.saveFileDialog1.Title = "Export Image";
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Image = ((System.Drawing.Image)(resources.GetObject("btnInfo.Image")));
+            this.btnInfo.Location = new System.Drawing.Point(157, 3);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnInfo.Size = new System.Drawing.Size(40, 40);
+            this.btnInfo.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.btnInfo, "Undo");
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,6 +532,7 @@
         private System.Windows.Forms.Button btnCorrection;
         private System.Windows.Forms.Button btnExposure;
         private System.Windows.Forms.Button btnContrast;
+        private System.Windows.Forms.Button btnInfo;
     }
 }
 

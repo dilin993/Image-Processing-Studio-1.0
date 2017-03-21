@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Image Processing Studio 1.0")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Basic image processing algorithms implemented using emguCV. Developers: Dilin Dampahalage, Nisal Dilshan, Nipun Mahesha, Kasun Maduranga.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("UoM")]
 [assembly: AssemblyProduct("Image Processing Studio 1.0")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

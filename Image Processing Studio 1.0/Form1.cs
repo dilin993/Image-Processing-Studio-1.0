@@ -487,5 +487,11 @@ namespace Image_Processing_Studio_1._0
             operationTab.Panel2.Controls.Clear();
             operationTab.Panel2.Controls.Add(ContrastControl);
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            AboutBox1 abtBox = new AboutBox1();
+            abtBox.ShowDialog();
+        }
     }
 }
