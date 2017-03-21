@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ImageProcessingStudioSetup1.0", "ImageProcessingStudioSetup1.0\ImageProcessingStudioSetup1.0.vdproj", "{671D35E0-3DE1-40B7-8BA9-1EC76156F7F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{671D35E0-3DE1-40B7-8BA9-1EC76156F7F7}.Debug|Default.ActiveCfg = Debug
+		{671D35E0-3DE1-40B7-8BA9-1EC76156F7F7}.Debug|Default.Build.0 = Debug
+		{671D35E0-3DE1-40B7-8BA9-1EC76156F7F7}.Release|Default.ActiveCfg = Release
+		{671D35E0-3DE1-40B7-8BA9-1EC76156F7F7}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
