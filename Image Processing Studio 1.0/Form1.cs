@@ -46,41 +46,59 @@ namespace Image_Processing_Studio_1._0
             saveFileDialog1.Filter = openFileDialog1.Filter;
 
             // initialize user controls
-            sharpeningControl = new SharpeningControl();
-            sharpeningControl.Dock = DockStyle.Top;
+            sharpeningControl = new SharpeningControl
+            {
+                Dock = DockStyle.Top
+            };
             sharpeningControl.ApplyClicked += onProcessingApplyClicked;
 
-            noiseRemovalControl = new NoiseRemovalControl();
-            noiseRemovalControl.Dock = DockStyle.Top;
+            noiseRemovalControl = new NoiseRemovalControl
+            {
+                Dock = DockStyle.Top
+            };
             noiseRemovalControl.ApplyClicked += onProcessingApplyClicked;
 
-            SaturationControl = new SaturationAdjustment();
-            SaturationControl.Dock = DockStyle.Top;
+            SaturationControl = new SaturationAdjustment
+            {
+                Dock = DockStyle.Top
+            };
             SaturationControl.ApplyClicked += onProcessingApplyClicked;
 
-            ColorControl = new ColorAdjustment();
-            ColorControl.Dock = DockStyle.Top;
+            ColorControl = new ColorAdjustment
+            {
+                Dock = DockStyle.Top
+            };
             ColorControl.ApplyClicked += onProcessingApplyClicked;
 
-            vignette = new Vignette();
-            vignette.Dock = DockStyle.Top;
+            vignette = new Vignette
+            {
+                Dock = DockStyle.Top
+            };
             vignette.ApplyClicked += onProcessingApplyClicked;
 
-            colorTempControl = new ColorTemperatureControl();
-            colorTempControl.Dock = DockStyle.Top;
+            colorTempControl = new ColorTemperatureControl
+            {
+                Dock = DockStyle.Top
+            };
             colorTempControl.ApplyClicked += onProcessingApplyClicked;
-            
-            HighlightShadowsControl = new HightlightShadows();
-            HighlightShadowsControl.Dock = DockStyle.Top;
+
+            HighlightShadowsControl = new HightlightShadows
+            {
+                Dock = DockStyle.Top
+            };
             HighlightShadowsControl.ApplyClicked += onProcessingApplyClicked;
-            
-            
-            ExposureControl = new Exposure();
-            ExposureControl.Dock = DockStyle.Top;
+
+
+            ExposureControl = new Exposure
+            {
+                Dock = DockStyle.Top
+            };
             ExposureControl.button1_Clicked += onProcessingApplyClicked;
 
-            ContrastControl = new Contrast();
-            ContrastControl.Dock = DockStyle.Top;
+            ContrastControl = new Contrast
+            {
+                Dock = DockStyle.Top
+            };
             ContrastControl.button1_Clicked += onProcessingApplyClicked;
         }
 
@@ -419,9 +437,11 @@ namespace Image_Processing_Studio_1._0
          
          private void btnCrop_Click(object sender, EventArgs e)
         {
-            var frm = new Form2();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            var frm = new Form2
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.ApplyClicked += onProcessingApplyClicked;
             frm.ShowDialog();
          }

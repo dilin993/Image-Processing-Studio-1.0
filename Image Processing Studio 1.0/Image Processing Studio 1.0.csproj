@@ -27,6 +27,8 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -71,14 +73,13 @@
     <ApplicationIcon>applications-graphics-5.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV.UI">
-      <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.dll</HintPath>
+    <Reference Include="Emgu.CV.UI, Version=3.4.3.3016, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EMGU.CV-CUDA.3.4.3.3016\lib\net35\Emgu.CV.UI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Emgu.CV.UI.GL">
-      <HintPath>..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.UI.GL.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.CV.World">
-      <HintPath>..\..\..\..\..\..\..\Emgu\emgucv-windesktop 3.1.0.2504\bin\Emgu.CV.World.dll</HintPath>
+    <Reference Include="Emgu.CV.World, Version=3.4.3.3016, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EMGU.CV-CUDA.3.4.3.3016\lib\net35\Emgu.CV.World.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -103,9 +104,9 @@
       <HintPath>..\packages\XmpCore.1.2.2\lib\net35\XmpCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ZedGraph, Version=5.1.5.28844, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ZedGraph.dll</HintPath>
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="applications-graphics-5.ico" />
+    <Content Include="CUDA_EULA.txt" />
+    <Content Include="CUFFT_EULA.txt" />
+    <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -273,6 +277,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\EMGU.CUFFT.9.1.0\build\EMGU.CUFFT.targets" Condition="Exists('..\packages\EMGU.CUFFT.9.1.0\build\EMGU.CUFFT.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EMGU.CUFFT.9.1.0\build\EMGU.CUFFT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EMGU.CUFFT.9.1.0\build\EMGU.CUFFT.targets'))" />
+    <Error Condition="!Exists('..\packages\EMGU.CV-CUDA.DEPENDENCY.9.1.0\build\EMGU.CV-CUDA.DEPENDENCY.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EMGU.CV-CUDA.DEPENDENCY.9.1.0\build\EMGU.CV-CUDA.DEPENDENCY.targets'))" />
+    <Error Condition="!Exists('..\packages\EMGU.CV-CUDA.3.4.3.3016\build\EMGU.CV-CUDA.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EMGU.CV-CUDA.3.4.3.3016\build\EMGU.CV-CUDA.targets'))" />
+  </Target>
+  <Import Project="..\packages\EMGU.CV-CUDA.DEPENDENCY.9.1.0\build\EMGU.CV-CUDA.DEPENDENCY.targets" Condition="Exists('..\packages\EMGU.CV-CUDA.DEPENDENCY.9.1.0\build\EMGU.CV-CUDA.DEPENDENCY.targets')" />
+  <Import Project="..\packages\EMGU.CV-CUDA.3.4.3.3016\build\EMGU.CV-CUDA.targets" Condition="Exists('..\packages\EMGU.CV-CUDA.3.4.3.3016\build\EMGU.CV-CUDA.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -235,9 +235,11 @@ namespace Image_Processing_Studio_1._0
                     brush.WrapMode = WrapMode.Tile;
                     brush.CenterColor = Color.FromArgb(0, 0, 0, 0);
                     brush.SurroundColors = new Color[] { Color.FromArgb(intense, red, green, blue) };
-                    Blend blend = new Blend();
-                    blend.Positions = new float[] { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0F };
-                    blend.Factors = new float[] { 0.0f, 0.5f, 1f, 1f, 1.0f, 1.0f };
+                    Blend blend = new Blend
+                    {
+                        Positions = new float[] { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0F },
+                        Factors = new float[] { 0.0f, 0.5f, 1f, 1f, 1.0f, 1.0f }
+                    };
                     brush.Blend = blend;
                     Region oldClip = g.Clip;
                     g.Clip = new Region(bounds);
